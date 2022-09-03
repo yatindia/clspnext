@@ -1,0 +1,47 @@
+@import "Config"
+
+.container
+    display: grid
+    grid-template-columns: 5fr 7fr
+    padding: 2%
+    width: 90%
+    margin:2% auto
+    background-color: $primary
+    border-bottom: 5px $secondary solid
+
+.porfileImageContainer
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+.porfileImage
+    width: 50%
+    height: unset
+    aspect-ratio: 1
+    background-size: cover
+    border-radius: 50%
+    border: 10px solid $secondary
+
+.infoContainer
+    display: flex
+    justify-content: center
+    align-items: center
+
+.userInfo
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    // pointer-events: none
+.UpdateButton
+    all: unset
+    background-color: $secondary
+    color: #fff
+    padding: 2% 4%
+    border-radius: 5px
+    border: 2px $primary solid
+    box-shadow: 8px 8px 10px $secondary
+    transition: box-shadow ease 00.1s
+    &:active
+        box-shadow: 5px 5px 10px $secondary

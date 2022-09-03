@@ -1,0 +1,34 @@
+@import "Config"
+
+.contain
+    width: 100%
+    min-height: 90vh
+    background-image: url("/buildings.jpg")
+    background-size: cover
+    background-position: center
+
+.containCover
+    width: 100%
+    min-height: 80vh
+    background: rgb(182,213,235)
+    background: linear-gradient(180deg, rgba(182,213,235,1) 0%, rgba(182,213,235,0.8071603641456583) 51%, rgba(0,212,255,0) 100%)
+
+.logo
+    width: 50%
+    @include mobile()
+        display: none
+.pharase
+    font-size: 18px
+    text-align: center
+    padding: 1%
+
+.searchContainer
+    width: 65%
+    margin: auto
+    min-height: 80vh
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    @include mobile()
+        width: 95%

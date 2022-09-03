@@ -1,0 +1,87 @@
+@import "Config"
+
+
+.logo
+    width:100%
+    max-width: 250px
+    
+.nav
+    background-color: $primary
+    min-height: 10vh
+    display: block
+    @include mobile()
+        display: none
+
+
+.navLink
+    color: $secondary !important
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
+.userImg
+    width: 50px
+    display: block
+    margin: auto
+    border-radius: 50%
+    border: 2px solid $secondary
+
+.navDropBg
+    background-color: $primary !important
+    @include mobile()
+        padding: 2%
+        border-radius: 0 0 1% 1%
+
+.logout
+    background-color: $secondary
+    color: #ffffff !important
+
+
+
+///Mopbile Nav
+    /* Style the navigation menu
+
+.topnav
+  padding: 2%
+  overflow: hidden
+  background-color: $primary
+  position: relative
+  display: none
+  @include mobile()
+        display: block
+
+
+  .myLinks
+    display: none
+
+  .a
+    color: $secondary
+    padding: 14px 16px
+    text-decoration: none
+    font-size: 17px
+    display: block
+
+    &.icon
+      background: black
+      display: block
+      position: absolute
+      right: 0
+      top: 0
+
+
+.active
+  background-color: #04AA6D
+  color: white
+
+.mainContainer
+  display: grid
+  grid-template-columns: 1fr 1fr
+
+.theLogo
+  display: flex
+  justify-content: left
+  align-items: center
+.theButton
+  display: flex
+  justify-content: right
+  align-items: center

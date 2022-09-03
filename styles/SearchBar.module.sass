@@ -1,0 +1,64 @@
+@import "Config"
+
+
+
+.searchbox
+    height:100%
+    width: 100%
+
+.searchOptions
+    width: 100%
+    @include mobile()
+        display: flex
+        justify-content: center
+
+.searchOption
+    all: unset
+    background-color: #fff
+    color: $secondary
+    padding: 1.5% 2%
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.232)
+    margin-right: calc( 1%/10 )
+    border-radius: 10px 10px 0 0
+    @include mobile()
+        width: 20%
+        text-align: center
+        padding: 2%,
+        margin: 1%
+        border-radius: 0 0 0 0 
+         
+
+
+.searchBar
+    width: 100%
+    background-color: rgba(255, 255, 255, 0.3)
+    display: grid
+    padding: calc( 1% )
+    z-index: 1
+    grid-template-columns: 9fr 1fr
+    @include mobile()
+        grid-template-columns: 1fr
+
+
+.searchInput
+    all: unset
+    background-color: #fff
+    padding: 1%
+    @include mobile()
+        padding: 2%,
+        margin-bottom: 1%
+
+
+.searchButton
+    all: unset
+    background-color: $secondary
+    color: #fff
+    padding: 5%
+    text-align: center
+    
+    &:hover
+        color: #fff
+        text-decoration: none
+        
+    @include mobile()
+        padding: 2%
