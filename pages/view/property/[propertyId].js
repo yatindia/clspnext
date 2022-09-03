@@ -107,7 +107,7 @@ export default function PropertyView() {
             <h1 className="text-center pt-2 text-uppercase">
               {property.title}
 
-              {theUser && theUser.data.token ? (
+              {theUser && theUser.data ? (
                 Array.isArray(property.liked) &&
                 property.liked.includes(tokenToId(theUser.data.token)) ? (
                   <button
