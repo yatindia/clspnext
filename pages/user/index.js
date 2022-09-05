@@ -5,6 +5,7 @@ import axios from "axios";
 import Config from "../../components/lib/Config";
 import Link from "next/link";
 import UserInfoPanel from "../../components/core/UserInfoPanel";
+import Skloading from "../../components/support/Skloading";
 export default function Account() {
   const [theUser, setTheUser] = useRecoilState(user);
 
@@ -57,6 +58,11 @@ export default function Account() {
 
     return <p>hi</p>;
   };
+
+  if (!theUser) {
+    console.log(theUser);
+    return <Skloading />;
+  }
 
   return (
     <>

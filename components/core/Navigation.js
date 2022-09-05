@@ -16,21 +16,21 @@ export default function Navigation() {
 
   useEffect(() => {
     login.status == "LGIN" ? setAuthenticated(true) : null;
-    if (login.status == "LGIN") {
-      axios({
-        method: "post",
-        url: `${Config.url.api}/user/myprofileimage`,
-        headers: {
-          Authorization: `<Bearer> ${userData.data.token}`,
-        },
-      }).then((res) => {
-        if (res.status) {
-          setProfileImage(
-            `${Config.url.GCP_GC_P_IMG}/${res.data.data.profile}`
-          );
-        }
-      });
-    }
+    // if (login.status == "LGIN") {
+    //   axios({
+    //     method: "post",
+    //     url: `${Config.url.api}/user/myprofileimage`,
+    //     headers: {
+    //       Authorization: `<Bearer> ${userData.data.token}`,
+    //     },
+    //   }).then((res) => {
+    //     if (res.status) {
+    //       setProfileImage(
+    //         `${Config.url.GCP_GC_P_IMG}/${res.data.data.profile}`
+    //       );
+    //     }
+    //   });
+    // }
   }, [login]);
 
   const logout = () => {
@@ -43,7 +43,7 @@ export default function Navigation() {
     return (
       <div className={`${style.nav}form-inline ms-auto`}>
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item dropdown">
+          {/* <li className="nav-item dropdown">
             <button
               className="nav-link btn"
               id="navbarDropdown"
@@ -59,7 +59,7 @@ export default function Navigation() {
               className="dropdown-menu"
               aria-labelledby="navbarDropdown"
             ></div>
-          </li>
+          </li> */}
 
           <li className="nav-item">
             <Link href="/user">
@@ -132,9 +132,11 @@ export default function Navigation() {
       <div className={style.topnav}>
         <div className={style.mainContainer}>
           <div className={style.theLogo}>
-            <a href="#home" className="active">
-              <img className={style.logo} src="/logo.svg" />
-            </a>
+            <Link href="/">
+              <a className="active">
+                <img className={style.logo} src="/logo.svg" />
+              </a>
+            </Link>
           </div>
           <div className={style.theButton}>
             <button
@@ -151,25 +153,38 @@ export default function Navigation() {
           className={style.myLinks}
           style={{ display: mobileNavOpen ? "block" : "none" }}
         >
-          <Link href="/user">
-            <a className={style.a}>Account</a>
-          </Link>
+          {authenticated ? (
+            <>
+              <Link href="/user">
+                <a className={style.a}>Account</a>
+              </Link>
 
-          <Link href="/user/myposts">
-            <a className={style.a}>My Posts</a>
-          </Link>
+              <Link href="/user/myposts">
+                <a className={style.a}>My Posts</a>
+              </Link>
 
-          <Link href="/about">
-            <a className={style.a}>Saved Posts</a>
-          </Link>
+              <Link href="/user/saved">
+                <a className={style.a}>Saved Posts</a>
+              </Link>
 
-          <Link href="/search">
-            <a className={style.a}>Search</a>
-          </Link>
+              <Link href="/search">
+                <a className={style.a}>Search</a>
+              </Link>
 
-          <Link href="/user/post">
-            <a className={style.a}>make Post</a>
-          </Link>
+              <Link href="/user/post">
+                <a className={style.a}>make Post</a>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/">
+                <a className={style.a}>Home</a>
+              </Link>
+              <Link href="/about">
+                <a className={style.a}>About</a>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     );

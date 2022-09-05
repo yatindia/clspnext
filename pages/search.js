@@ -7,6 +7,7 @@ import style from "../styles/SearchPage.module.sass";
 import Link from "next/link";
 import { SelectInput } from "../components/core/inputs/FormInputs";
 import States from "../components/lib/USStates";
+import ProgressBar from "../components/support/ProgressBar";
 export default function Search() {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyD1A1aNBxTVVNxtYKRbFWZm9uyWwJVag5E",
@@ -46,8 +47,8 @@ export default function Search() {
     });
   };
 
-  if (!isLoaded) {
-    return <div>loading</div>;
+  if (!isLoaded && results.length == 0) {
+    return <ProgressBar />;
   }
 
   return (
@@ -92,7 +93,7 @@ export default function Search() {
       <div className={style.searchBar}>
         <SelectInput
           value={propertFor}
-          placeholder="Select Property"
+          placeholder="Property Type"
           dataArray={["sale", "lease"]}
           formInput={(value) => {
             setPropertFor(value);

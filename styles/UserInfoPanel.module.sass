@@ -8,6 +8,8 @@
     margin:2% auto
     background-color: $primary
     border-bottom: 5px $secondary solid
+    @include mobile
+        grid-template-columns: 1fr
 
 .porfileImageContainer
     display: flex
@@ -22,7 +24,25 @@
     background-size: cover
     border-radius: 50%
     border: 10px solid $secondary
-
+.porfileImageRemove
+    opacity: 0
+    background: rgba(0, 0, 0, 0.216)
+    width: 100%
+    height: unset
+    aspect-ratio: 1
+    border-radius: 50%
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: ease 0.3s
+    @include mobile
+        opacity: 1
+    &:hover
+        opacity: 1
+.porfileImageText
+    text-align: center     
+     
+        
 .infoContainer
     display: flex
     justify-content: center

@@ -6,6 +6,7 @@ import CheckLogin from "../lib/CheckLogin";
 import { user } from "../core/Atoms";
 import { useRecoilState } from "recoil";
 import axios from "axios";
+import Skloading from "../support/Skloading";
 export default function UserInfoPanel() {
   const [userInfo, setUserInfo] = useState({});
   const [userData, setUserData] = useRecoilState(user);
@@ -112,7 +113,14 @@ export default function UserInfoPanel() {
             style={{
               backgroundImage: `url(${Config.url.GCP_GC_P_IMG}/${userInfo.profile})`,
             }}
-          ></div>
+          >
+            <div className={style.porfileImageRemove}>
+              <p className={style.porfileImageText}>
+                Click to <br />
+                Update Image
+              </p>
+            </div>
+          </div>
           <h2>Hello, {userInfo.name ? userInfo.name : "..."}</h2>
         </div>
         <div className={style.infoContainer}>
@@ -170,6 +178,6 @@ export default function UserInfoPanel() {
       </div>
     );
   } else {
-    return "...";
+    return <Skloading />;
   }
 }

@@ -10,14 +10,20 @@
     display: grid
     grid-template-columns: 7fr 3fr
     background-size: cover
+    @include mobile
+        grid-template-columns: 1fr
+
 .resultImage
     background-size: cover
     min-height: 50vh
     background-position: center
+    @include mobile
+        min-height: 20vh
 .resultDetail
     padding: 4%
     min-height: 250px
     max-height: 35vh
+    color: $secondary
 .resultBtn
     all: unset
     background-color: $secondary
@@ -26,6 +32,7 @@
     &:hover
         color: #fff
         text-decoration: none
+        cursor: pointer
 .searchBar
     width: 100%
     margin: auto
@@ -39,6 +46,8 @@
     padding: 1%
     border: 5px $secondary solid
     box-shadow: 1px 5px 10px #0000001d
+    color: $secondary
+    background-color: #fff
 .searchButton
     all: unset
     background-color: $secondary

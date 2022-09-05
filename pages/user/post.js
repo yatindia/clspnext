@@ -16,6 +16,7 @@ import { user } from "../../components/core/Atoms";
 import { useRecoilState } from "recoil";
 import State from "../../components/lib/USStates";
 import style from "../../styles/Post.module.sass";
+import ProgressBar from "../../components/support/ProgressBar";
 
 export default function Post() {
   const { isLoaded } = useJsApiLoader({
@@ -70,7 +71,7 @@ export default function Post() {
   };
 
   if (!isLoaded) {
-    return <div>loading</div>;
+    return <ProgressBar />;
   }
 
   return (
@@ -113,7 +114,7 @@ export default function Post() {
           });
         }}
       >
-        Add Images
+        Click Here to Add Images
       </button>
       <div className="imageContainer">
         {property.photos.map((photo, index) => {
@@ -124,7 +125,6 @@ export default function Post() {
                 onDelete={() => {
                   let ims = property.photos;
                   ims.splice(index, 1);
-                  console.log(ims);
                   setProperty({
                     ...property,
                     photos: ims,

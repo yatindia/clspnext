@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 export function SelectInput(props) {
   return (
     <div className="formSelectInputContainer">
-      <label className="formLabel" htmlFor="">
+      <label className="formLabel color" htmlFor="">
         {props.placeholder}
       </label>
 
@@ -37,12 +37,12 @@ export function SelectInput(props) {
 export function TextInput(props) {
   return (
     <div className="formInputContainer">
-      <label className="formLabel" htmlFor="">
+      <label className="formLabel color" htmlFor="">
         {props.placeholder}
       </label>
       <input
         value={props.value}
-        className="formInput"
+        className="formInput color"
         onInput={(e) => {
           props.formInput(e.target.value);
         }}
@@ -67,13 +67,13 @@ export function TextArrayInput(props) {
   return (
     <div className="formArrayInputContainer">
       <div className="hightlightsContainer">
-        <label className="formLabel" htmlFor="">
+        <label className="formLabel color" htmlFor="">
           {props.placeholder}
         </label>
         {arrayData.map((hl, index) => {
           return (
             <div className="hightlights" key={index}>
-              <p className="hightlight">{hl}</p>
+              <p className="hightlight color">{hl}</p>
               <button
                 className="hightlightRemove"
                 onClick={() => {
@@ -90,7 +90,7 @@ export function TextArrayInput(props) {
       <div className="controlContainer">
         <input
           value={value}
-          className="formArrayInput"
+          className="formArrayInput color"
           placeholder={props.placeholder}
           onInput={(e) => {
             setValue(e.target.value);

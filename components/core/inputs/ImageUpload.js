@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import Config from "../../lib/Config";
 export default function ImageUpload(props) {
@@ -17,6 +17,8 @@ export default function ImageUpload(props) {
     });
   };
 
+  const inputRef = useRef(null);
+
   return (
     <div className="singleImage">
       {image != "" ? (
@@ -29,14 +31,14 @@ export default function ImageUpload(props) {
         >
           <div
             style={{
-              backgroundColor: "red",
+              backgroundColor: "#000",
               width: "100%",
               height: "unset",
               aspectRatio: 1,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              opacity: hover ? 1 : 0,
+              opacity: hover ? 1 : 0.5,
             }}
             onMouseOver={() => {
               setHover(true);
@@ -45,18 +47,37 @@ export default function ImageUpload(props) {
               setHover(false);
             }}
           >
-            <h3 style={{ color: "#fff" }}>Remove</h3>
+            <h3 style={{ color: "#fff", textAlign: "center" }}>
+              Click to Remove
+            </h3>
           </div>
         </div>
       ) : (
         <div className="file btn btn-lg btn-primary">
           <input
-            className="fileinput"
+            ref={inputRef}
+            className="fileinput d-none"
             type="file"
             onInput={(e) => {
               uploadImage(e);
             }}
           />
+          <button
+            onClick={() => {
+              inputRef.current.click();
+            }}
+            className="m-2 btn btn-success"
+          >
+            Upload
+          </button>
+          <button
+            onClick={() => {
+              props.onDelete();
+            }}
+            className="m-2 btn btn-danger"
+          >
+            Remove
+          </button>
         </div>
       )}
     </div>

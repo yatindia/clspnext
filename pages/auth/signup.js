@@ -16,6 +16,8 @@ export default function Signup() {
     confirmPassword: "Mirage20#@",
   });
 
+  const [inputType, setInputType] = useState(true);
+
   const handleSubmit = async () => {
     //error check
     let errors = [];
@@ -44,6 +46,11 @@ export default function Signup() {
       .post(`${Config.url.api}/auth/register`, data)
       .then(({ data }) => {
         console.log(data);
+
+        if (data.status) {
+        } else {
+          alert("Failed, Please check your email");
+        }
       });
   };
 
@@ -52,7 +59,7 @@ export default function Signup() {
       <div className={style.form}>
         <div className={style.container}>
           <h1 className={style.title}>Sign Up</h1>
-          <p className="text-center">
+          <p className="text-center color">
             Hi, hello. We are so happy to see you join us.
           </p>
         </div>
@@ -115,13 +122,21 @@ export default function Signup() {
             onInput={(e) => {
               setData({ ...data, password: e.target.value });
             }}
+            type={inputType ? "password" : "text"}
           />
+
           <div
             style={{
               width: `${(data.password.length / passwordLength) * 100}%`,
             }}
             className={style.size}
           ></div>
+          <p
+            onClick={() => setInputType(!inputType)}
+            className="color pt-2 text-decoration-underline"
+          >
+            {inputType ? "Show" : "Hide"} Password
+          </p>
         </div>
 
         <div className={style.container}>
@@ -153,6 +168,7 @@ export default function Signup() {
             className={style.input}
             id="rePassword"
             placeholder="Re-Type Password"
+            type={inputType ? "password" : "text"}
           />
           {data.confirmPassword && data.password != data.confirmPassword ? (
             <p className={style.red}>The passwords should match</p>

@@ -31,7 +31,6 @@ export default function Login() {
               "Your account is not yet verified, Want to send reverification link"
             ) == true
           ) {
-            console.log(data.email);
             axios({
               url: `${Config.url.api}/auth/reverification`,
               method: "post",
@@ -60,6 +59,23 @@ export default function Login() {
     });
   };
 
+  const handleForgotPassword = async () => {
+    let email = prompt("Fill Email");
+
+    axios({
+      url: `${Config.url.api}/auth/resetpassword`,
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      data: { email: email },
+    }).then((res) => {
+      if (res.data.status) {
+        alert("Please check you email");
+      } else {
+        alert("Password Recovery Failed");
+      }
+    });
+  };
+
   let { status, token } = CheckLogin();
   if (status != "LODG" && status == "NOLG") {
     //action if not loggedIn
@@ -73,7 +89,9 @@ export default function Login() {
       <div className={style.form}>
         <div className={style.container}>
           <h1 className={style.title}>LogIn</h1>
-          <p className="text-center">It&#39;s always happy to see you back.</p>
+          <p className="text-center color">
+            It&#39;s always happy to see you back.
+          </p>
         </div>
 
         <div className={style.container}>
@@ -104,9 +122,13 @@ export default function Login() {
 
         <div className={style.container}>
           <div className={style.linkContainer}>
-            <Link href="/auth/forgotpassword">
-              <a className={style.text}>Forgot Password?</a>
-            </Link>
+            <button
+              onClick={() => handleForgotPassword()}
+              className={`${style.text} color btn`}
+            >
+              Forgot Password?
+            </button>
+
             <Link href="/auth/signup">
               <a className={style.text}>Don&apos;t Have an account? Signup</a>
             </Link>

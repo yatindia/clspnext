@@ -50,13 +50,6 @@ export default function MyPosts() {
     }
   };
 
-  const TimeStamp = (_id) => {
-    let timestamp = _id.toString().substring(0, 8);
-    let date = new Date(parseInt(_id.toString().slice(0, 8), 16) * 1000);
-    console.log(date);
-    return <p>hi</p>;
-  };
-
   return (
     <div className="propContainer">
       {property == [] || property.length == 0 ? (
