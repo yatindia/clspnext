@@ -7,23 +7,23 @@ export default function TermsOfUse() {
       <h4>
         PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY AS THEY CONTAIN
         IMPORTANT INFORMATION ABOUT YOUR RIGHTS AND OBLIGATIONS WHEN USING
-        COMMERCIALLISTINGSPRO.COM (“this Site”).{" "}
+        COMMERCIALLISTINGSPRO.COM (“this Site”).
       </h4>
       <h2>1. Introduction</h2>
       <h3>ACCEPTANCE OF TERMS</h3>
       <p>
         By using and accessing https://www.commerciallistingspro.com (the
-        "Website"), you conclude a legally binding agreement with us, ITPROZ
-        CORPORATIONS, LLC ("we" or "us"), the owner and administrator of the
-        Website. We may amend these Terms of Service at any time by posting a
-        revised version on the Website. However, an individual notice will not
-        be sent to you. Any amended Terms of Service shall replace all previous
-        versions of the same. If you do not agree to the amendments or changes
-        to the Terms of Service, you should immediately cease use of any of the
-        services on the Website. After any such amendment becomes effective, we
-        will deem your continued use of the Website to constitute acceptance and
-        agreement to such amendment. You can review the most current version of
-        the Terms of Service at any time
+        &quot;Website&quot;), you conclude a legally binding agreement with us,
+        ITPROZ CORPORATIONS, LLC (&quot;we&quot; or &quot;us&quot;), the owner
+        and administrator of the Website. We may amend these Terms of Service at
+        any time by posting a revised version on the Website. However, an
+        individual notice will not be sent to you. Any amended Terms of Service
+        shall replace all previous versions of the same. If you do not agree to
+        the amendments or changes to the Terms of Service, you should
+        immediately cease use of any of the services on the Website. After any
+        such amendment becomes effective, we will deem your continued use of the
+        Website to constitute acceptance and agreement to such amendment. You
+        can review the most current version of the Terms of Service at any time
         https://www.commerciallistingspro.com/termsofuse We will, from time to
         time, post on the Website, guidelines and rules relating to the use of
         the Website. All such guidelines or rules are hereby incorporated by
@@ -41,7 +41,7 @@ export default function TermsOfUse() {
         you and us. We may change these Terms at our discretion by updating them
         on the Site. The then current version of these Terms will apply whenever
         you use this Site. Please check this page from time to time and take
-        notice of any changes.{" "}
+        notice of any changes.
       </p>
       <h2>2. Our rights and Intellectual property</h2>
       <p>
@@ -69,7 +69,7 @@ export default function TermsOfUse() {
         these details, you do so at your own risk. We recommend that you check
         all property details with the third property advertiser before making
         any decisions or taking any action in regards to a property advertised
-        on our Site.{" "}
+        on our Site.
       </p>
       <h2>3. Your obligations and conduct </h2>
       <p>
@@ -103,7 +103,7 @@ export default function TermsOfUse() {
         standards set out in these Terms. Please see clause 4 below. You warrant
         that any such contribution does comply with the standards mentioned in
         clause 4 and you will be liable to us and indemnify us against any
-        breach of this warranty.{" "}
+        breach of this warranty.
       </p>
       <h2>4. Interactive services and content </h2>
       <p>
@@ -121,7 +121,7 @@ export default function TermsOfUse() {
         <li>Be genuinely held (where you state opinions); and </li>
         <li>
           Comply with the applicable law of the country from which they were
-          posted.{" "}
+          posted.
         </li>
       </ul>
       Your content must not:
@@ -129,11 +129,11 @@ export default function TermsOfUse() {
         <li>Contain any material which is defamatory of any person; </li>
         <li>
           Contain any material which is obscene, offensive, hateful,
-          discriminatory, unethical, immoral or inflammatory; or{" "}
+          discriminatory, unethical, immoral or inflammatory; or
         </li>
         <li>
           Contain any material which does or could potentially infringe the
-          intellectual property rights of a third party.{" "}
+          intellectual property rights of a third party.
         </li>
       </ul>
       We will determine in our discretion whether there has been a breach of
@@ -142,7 +142,7 @@ export default function TermsOfUse() {
       <ul>
         <li>
           Immediate, temporary or permanent withdrawal of your right to use our
-          Site;{" "}
+          Site;
         </li>
         <li>
           Immediate, temporary or permanent removal of any posting or material
@@ -171,7 +171,7 @@ export default function TermsOfUse() {
         responsibility for all use of and for keeping secret any credentials
         that may have been given to you or chosen by you for use on this Site.
         You will notify us immediately of any unauthorized use of them or any
-        other breach of security of this Site of which you become aware.{" "}
+        other breach of security of this Site of which you become aware.
       </p>
       <h2>6. Barring from the site </h2>
       <p>
@@ -179,7 +179,7 @@ export default function TermsOfUse() {
         disable their access or use of any or all elements of our services, on a
         permanent or temporary basis, at our sole discretion. Any such user
         shall be notified and must not then attempt to use this Site under any
-        other name or through any other user.{" "}
+        other name or through any other user.
       </p>
       <h2>7. Warranty </h2>
       <p>
@@ -196,7 +196,7 @@ export default function TermsOfUse() {
         representations that the property information on this Site is correct,
         accurate or up-to-date. To the extent permitted by law, we exclude all
         conditions, warranties, representations or other terms which may apply
-        to our Site or any content on it, whether express or implied.{" "}
+        to our Site or any content on it, whether express or implied.
       </p>
       <h2>8. Liability </h2>
       <p>
@@ -254,12 +254,12 @@ export default function TermsOfUse() {
         binding on you. If you are a business user, these Terms are the whole
         agreement between you and us. You acknowledge that you have not entered
         into this agreement in reliance on any warranty or representation made
-        by us (unless made fraudulently).{" "}
+        by us (unless made fraudulently).
       </p>
       <h2>10.Contact us </h2>
       <p>
         To contact us, please email support@commerciallistingspro.com Thank you
-        for visiting commerciallistingspro.com.{" "}
+        for visiting commerciallistingspro.com.
       </p>
     </main>
   );

@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
         We recognize the importance of protecting the privacy and the rights of
         individuals in relation to their personal information. This document is
         our privacy policy and it tells you how we collect and manage your
-        personal information.{" "}
+        personal information.
       </h4>
       <h2>What is your personal information? </h2>
       <p>
@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
         include your name, address, phone number, email address and profession
         or occupation. If the information we collect personally identifies you,
         or you are reasonably identifiable from it, the information will be
-        considered personal information.{" "}
+        considered personal information.
       </p>
       <h2>What personal information do we collect and hold? </h2>
       <p>
@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
         also collect some information that is not personal information because
         it does not identify you or anyone else. For example, we may collect
         anonymous answers to surveys or aggregated information about how users
-        use our website.{" "}
+        use our website.
       </p>
 
       <h2>How do we collect your personal information? </h2>
@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
         <li>by contracting with us </li>
         <li>
           by entering competitions, promotions or requesting information or
-          material from us{" "}
+          material from us
         </li>
         <li>completing surveys, providing feedback or complaining to us </li>
       </ul>
@@ -58,16 +58,16 @@ export default function PrivacyPolicy() {
         of your activity on our website for a period of time. We also use
         cookies to measure traffic patterns, to determine which areas of our
         website have been visited and to measure transaction patterns in the
-        aggregate. We use this to research our users' habits so that we can
+        aggregate. We use this to research our users&apos; habits so that we can
         improve our online products and services. Our cookies do not collect
         personal information. If you do not wish to receive cookies, you can set
         your browser so that your computer does not accept them. We may log IP
         addresses (that is, the electronic addresses of computers connected to
         the internet) to analyse trends, administer the website and track users
-        movements.{" "}
+        movements.
       </p>
 
-      <h2>What happens if we can't collect your personal information? </h2>
+      <h2>What happens if we can&apos;t collect your personal information? </h2>
       <p>
         If you do not provide us with the personal information described above,
         some or all of the following may happen:
@@ -75,22 +75,22 @@ export default function PrivacyPolicy() {
       <ul>
         <li>
           We may not be able to provide the requested products or services to
-          you, either to the same standard or at all;{" "}
+          you, either to the same standard or at all;
         </li>
         <li>
           We may not be able to provide you with information about products and
-          services that you may want; or{" "}
+          services that you may want; or
         </li>
         <li>
           We may be unable to tailor the content of our websites to your
           preferences and your experience of our websites may not be as
-          enjoyable or useful.{" "}
+          enjoyable or useful.
         </li>
       </ul>
 
       <h2>
         For what purposes do we collect, hold, use and disclose your personal
-        information?{" "}
+        information?
       </h2>
       <p>
         We collect personal information about you so that we can perform our
@@ -101,48 +101,46 @@ export default function PrivacyPolicy() {
       <ul>
         <li>
           to provide products and services to you and to send communications
-          requested by you;{" "}
+          requested by you;
         </li>
         <li>
           to answer enquiries and provide information or advice about existing
-          and new products or services;{" "}
+          and new products or services;
         </li>
         <li>to provide you with access to protected areas of our website; </li>
         <li>
           to assess the performance of the website and to improve the operation
-          of the website;{" "}
+          of the website;
         </li>
         <li>
           to conduct business processing functions including providing personal
           information to our related bodies corporate, contractors, service
-          providers or other third parties;{" "}
+          providers or other third parties;
         </li>
         <li>
           for the administrative, marketing (including direct marketing),
           planning, product or service development, quality control, survey and
           research purposes, its related bodies corporate, contractors,
-          franchisees, franchisees' real estate agents and employees or service
-          providers;{" "}
+          franchisees, franchisees&apos; real estate agents and employees or
+          service providers;
         </li>
         <li>
           to provide your updated personal information to our related bodies
-          corporate, contractors, franchisees, franchisees' real estate agents
-          and employees or service providers;{" "}
+          corporate, contractors, franchisees, franchisees&apos; real estate
+          agents and employees or service providers;
         </li>
-        <li>
-          to update our records and keep your contact details up to date;{" "}
-        </li>
+        <li>to update our records and keep your contact details up to date;</li>
         <li>to process and respond to any complaint made by you; and </li>
         <li>
           to comply with any law, rule, regulation, lawful and binding
           determination, decision or direction of a regulator, or in
           co-operation with any governmental authority of any country (or
-          political sub-division of a country).{" "}
+          political sub-division of a country).
         </li>
       </ul>
       <p>
         Your personal information will not be shared, sold, rented or disclosed
-        other than as described in this Privacy Policy.{" "}
+        other than as described in this Privacy Policy.
       </p>
 
       <h2>To whom may we disclose your information? </h2>
@@ -150,21 +148,21 @@ export default function PrivacyPolicy() {
       <ul>
         <li>
           Our employees, related bodies corporate, contractors, franchisees,
-          franchisees' real estate agents and employees or service providers for
-          the purposes of operation of our website or our business, fulfilling
-          requests by you, and to otherwise provide products and services to you
-          including, without limitation, web hosting providers, IT systems
-          administrators, mailing houses, couriers, payment processors, data
-          entry service providers, electronic network administrators, and
-          professional advisors such as accountants, solicitors, business
-          advisors and consultants;{" "}
+          franchisees&apos; real estate agents and employees or service
+          providers for the purposes of operation of our website or our
+          business, fulfilling requests by you, and to otherwise provide
+          products and services to you including, without limitation, web
+          hosting providers, IT systems administrators, mailing houses,
+          couriers, payment processors, data entry service providers, electronic
+          network administrators, and professional advisors such as accountants,
+          solicitors, business advisors and consultants;
         </li>
         <li>
           Suppliers and other third parties with whom we have commercial
-          relationships, for business, marketing, and related purposes; and{" "}
+          relationships, for business, marketing, and related purposes; and
         </li>
         <li>
-          Any organization for any authorized purpose with your express consent.{" "}
+          Any organization for any authorized purpose with your express consent.
         </li>
       </ul>
 
@@ -182,7 +180,7 @@ export default function PrivacyPolicy() {
         you access to the personal information we hold. For example, we may need
         to refuse access if granting access would interfere with the privacy of
         others or if it would result in a breach of confidentiality. If that
-        happens, we will give you reasons for any refusal.{" "}
+        happens, we will give you reasons for any refusal.
       </p>
 
       <h2>What is the process for complaining about a breach of privacy? </h2>
@@ -190,7 +188,7 @@ export default function PrivacyPolicy() {
         If you believe that your privacy has been breached, please contact us
         using the contact information below and provide details of the incident
         so that we can investigate it. We will deal with the complaint in
-        accordance with our then current Complaints Handling Procedure.{" "}
+        accordance with our then current Complaints Handling Procedure.
       </p>
 
       <h2>Security </h2>
@@ -201,7 +199,7 @@ export default function PrivacyPolicy() {
         guarantee that the information you supply will not be intercepted while
         being transmitted over the internet. Accordingly, any personal
         information or other information which you transmit to us online is
-        transmitted at your own risk.{" "}
+        transmitted at your own risk.
       </p>
 
       <h2>Links </h2>
@@ -211,7 +209,7 @@ export default function PrivacyPolicy() {
         privacy practices of any third party website and we are not responsible
         for the privacy policies or the content of any third party website.
         Third party websites are responsible for informing you about their own
-        privacy practices.{" "}
+        privacy practices.
       </p>
 
       <h2>Contacting us </h2>
@@ -223,7 +221,7 @@ export default function PrivacyPolicy() {
         representative will contact you within a reasonable time after receipt
         of your complaint to discuss your concerns and outline options regarding
         how they may be resolved. We will aim to ensure that your complaint is
-        resolved in timely and appropriate manner.{" "}
+        resolved in timely and appropriate manner.
       </p>
     </main>
   );

@@ -135,6 +135,12 @@ export default function Search() {
             </div>
           );
         })}
+
+        {typeof results === "undefined" || results.length == 0 ? (
+          <h1 className="text-center p-5">No Results</h1>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
