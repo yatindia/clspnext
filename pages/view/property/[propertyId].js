@@ -8,6 +8,7 @@ import style from "../../../styles/ViewProperty.module.sass";
 import PropertyDetails from "../../../components/core/PropertyDetails";
 import { useJsApiLoader, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Floors from "../../../components/core/Floors";
+import ImageSlider from "../../../components/support/ImageSlider";
 
 export default function PropertyView() {
   const { isLoaded } = useJsApiLoader({
@@ -17,6 +18,7 @@ export default function PropertyView() {
   const [property, setProperty] = useState({});
   const [images, setImages] = useState([]);
   const [agent, setAgent] = useState({});
+  const [showSlider, setShowSlider] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -84,8 +86,19 @@ export default function PropertyView() {
 
   return (
     <>
+      {showSlider && images.length > 1 ? (
+        <ImageSlider
+          onPress={() => {
+            setShowSlider(false);
+          }}
+          images={images}
+        />
+      ) : (
+        ""
+      )}
       <div
         className={style.slider}
+        onClick={() => setShowSlider(true)}
         style={{
           backgroundImage: `url(/blur.jpg)`,
           backgroundSize: "cover",

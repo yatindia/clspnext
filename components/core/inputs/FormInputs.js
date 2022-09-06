@@ -34,19 +34,20 @@ export function SelectInput(props) {
   );
 }
 
-export function TextInput(props) {
+export function TextInput({ placeholder, value, formInput, type = "text" }) {
   return (
     <div className="formInputContainer">
       <label className="formLabel color" htmlFor="">
-        {props.placeholder}
+        {placeholder}
       </label>
       <input
-        value={props.value}
+        type={type}
+        value={value}
         className="formInput color"
         onInput={(e) => {
-          props.formInput(e.target.value);
+          formInput(e.target.value);
         }}
-        placeholder={props.placeholder}
+        placeholder={placeholder}
       />
     </div>
   );

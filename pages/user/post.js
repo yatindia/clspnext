@@ -114,7 +114,7 @@ export default function Post() {
           });
         }}
       >
-        Click Here to Add Images
+        Click Here to Add &amp; upload property image
       </button>
       <div className="imageContainer">
         {property.photos.map((photo, index) => {
@@ -227,6 +227,7 @@ export default function Post() {
         <TextInput
           value={property.zip_code}
           placeholder="Zip Code"
+          type="number"
           formInput={(value) => {
             setProperty({ ...property, zip_code: value });
           }}
@@ -235,6 +236,7 @@ export default function Post() {
         <TextInput
           value={property.year_built}
           placeholder="Year Built"
+          type="number"
           formInput={(value) => {
             setProperty({ ...property, year_built: value });
           }}
@@ -254,6 +256,7 @@ export default function Post() {
           <TextInput
             value={property.renovated_year}
             placeholder="Year Renovated"
+            type="number"
             formInput={(value) => {
               setProperty({ ...property, renovated_year: value });
             }}
@@ -261,14 +264,16 @@ export default function Post() {
         ) : null}
         <TextInput
           value={property.building_size}
-          placeholder="Building Size"
+          placeholder="Building Size Sq.ft"
+          type="number"
           formInput={(value) => {
             setProperty({ ...property, building_size: value });
           }}
         />
         <TextInput
           value={property.lot_size}
-          placeholder="Lot Size"
+          placeholder="Lot Size Sq.ft"
+          type="number"
           formInput={(value) => {
             setProperty({ ...property, lot_size: value });
           }}
@@ -371,13 +376,13 @@ export default function Post() {
 
       <div className={style.submitButtons}>
         <button className="btn btn-info" onClick={() => handleSubmit("post")}>
-          Submit
+          Free Submit
         </button>
         <button
           className="btn btn-success"
           onClick={() => handleSubmit("premium")}
         >
-          Premium
+          Premium Submit
         </button>
       </div>
     </>

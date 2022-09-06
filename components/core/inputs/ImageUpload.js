@@ -53,7 +53,7 @@ export default function ImageUpload(props) {
           </div>
         </div>
       ) : (
-        <div className="file btn btn-lg btn-primary">
+        <div className="file btn btn-lg ">
           <input
             ref={inputRef}
             className="fileinput d-none"

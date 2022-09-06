@@ -18,6 +18,7 @@ export default function FloorInput(props) {
         }}
       />
       <TextInput
+        type="number"
         placeholder="Floor Size Sq.ft"
         value={floor.floor_size}
         formInput={(value) => {
@@ -36,6 +37,7 @@ export default function FloorInput(props) {
         }}
       />
       <TextInput
+        type="number"
         placeholder="Rate"
         value={floor.rate}
         formInput={(value) => {
@@ -72,6 +74,7 @@ export default function FloorInput(props) {
       />
 
       <TextInput
+        type="number"
         placeholder="Period Of Tenure"
         value={floor.period_of_tenure}
         formInput={(value) => {

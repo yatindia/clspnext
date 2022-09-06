@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import Config from "../../components/lib/Config";
 import Link from "next/link";
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useRecoilState(user);
   const [datau, setData] = useState({
     email: "",
@@ -110,14 +111,22 @@ export default function Login() {
         <div className={style.container}>
           <label className={style.label}>Type Password</label>
           <input
-            className={style.input}
+            className={`${style.input} color`}
             id="password"
             placeholder="Type Password"
             value={datau.password}
             onInput={(e) => {
               setData({ ...datau, password: e.target.value });
             }}
+            type={showPassword ? "text" : "password"}
           />
+          <p
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowPassword(!showPassword)}
+            className="pt-2"
+          >
+            {showPassword ? "Hide" : "Show"}Password
+          </p>
         </div>
 
         <div className={style.container}>

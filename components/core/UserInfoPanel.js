@@ -50,11 +50,13 @@ export default function UserInfoPanel() {
       headers: {
         Authorization: `<Bearer> ${userData.data.token}`,
       },
-      data: userInfo,
+      data: form,
     }).then((res) => {
       if (res.status) {
-        alert("Profile Picture will take sometime to update");
-        window.location.href = `/user`;
+        handleLoadInfo();
+        alert("Profile Picture might take sometime to update");
+      } else {
+        alert("Something went wrong while updating.. please try later");
       }
     });
   };

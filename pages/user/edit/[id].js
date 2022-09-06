@@ -244,6 +244,7 @@ export default function EditProperty() {
           />
           <TextInput
             value={property.zip_code}
+            type="number"
             placeholder="Zip Code"
             formInput={(value) => {
               setProperty({ ...property, zip_code: value });
@@ -251,6 +252,7 @@ export default function EditProperty() {
           />
 
           <TextInput
+            type="number"
             value={property.year_built}
             placeholder="Year Built"
             formInput={(value) => {
@@ -270,6 +272,7 @@ export default function EditProperty() {
           />
           {property.renovated ? (
             <TextInput
+              type="number"
               value={property.renovated_year}
               placeholder="Year Renovated"
               formInput={(value) => {
@@ -279,6 +282,7 @@ export default function EditProperty() {
           ) : null}
           <TextInput
             value={property.building_size}
+            type="number"
             placeholder="Building Size"
             formInput={(value) => {
               setProperty({ ...property, building_size: value });
@@ -286,6 +290,7 @@ export default function EditProperty() {
           />
           <TextInput
             value={property.lot_size}
+            type="number"
             placeholder="Lot Size"
             formInput={(value) => {
               setProperty({ ...property, lot_size: value });
