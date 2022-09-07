@@ -58,13 +58,17 @@ export default function Post() {
             alert(res.data.message);
           }
         } else {
-          axios({
-            method: "post",
-            url: `${Config.url.payment}/payment/${res.data.data._id}`,
-          }).then((res) => {
-            window.location.href = res.data.url;
-          });
-          alert(res.data.message);
+          if (e == "premium") {
+            axios({
+              method: "post",
+              url: `${Config.url.payment}/payment/${res.data.data._id}`,
+            }).then((res) => {
+              window.location.href = res.data.url;
+            });
+            alert(res.data.message);
+          } else {
+            alert(res.data.message);
+          }
         }
       });
     }

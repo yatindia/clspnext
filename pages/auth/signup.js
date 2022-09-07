@@ -49,7 +49,7 @@ export default function Signup() {
 
         if (data.status) {
         } else {
-          alert("Failed, Please check your email");
+          alert(data.message);
         }
       });
   };

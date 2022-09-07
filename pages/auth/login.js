@@ -70,9 +70,9 @@ export default function Login() {
       data: { email: email },
     }).then((res) => {
       if (res.data.status) {
-        alert("Please check you email");
+        alert(res.data.message);
       } else {
-        alert("Password Recovery Failed");
+        alert(res.data.message);
       }
     });
   };

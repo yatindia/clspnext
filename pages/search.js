@@ -47,7 +47,10 @@ export default function Search() {
     });
   };
 
-  if (!isLoaded && results.length == 0) {
+  if (!isLoaded) {
+    return <ProgressBar />;
+  }
+  if (results.length == 0) {
     return <ProgressBar />;
   }
 
