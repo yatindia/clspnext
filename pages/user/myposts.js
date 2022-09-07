@@ -4,10 +4,11 @@ import { useRecoilState } from "recoil";
 import axios from "axios";
 import Config from "../../components/lib/Config";
 import Link from "next/link";
+import ProgressBar from "../../components/support/ProgressBar";
 export default function MyPosts() {
   const [theUser, setTheUser] = useRecoilState(user);
-
   const [property, setProperty] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     handleLoadMyPosts();
@@ -15,6 +16,7 @@ export default function MyPosts() {
 
   const handleLoadMyPosts = async () => {
     if (theUser.data) {
+      setLoading(true);
       axios({
         method: "get",
         url: `${Config.url.api}/property/singleuserproperty`,
@@ -22,15 +24,18 @@ export default function MyPosts() {
           Authorization: `<Bearer> ${theUser.token || theUser.data.token}`,
         },
         data: { property },
-      }).then((res) => {
-        setProperty(res.data.data);
-        console.log(res.data.data.length);
-      });
+      })
+        .then((res) => {
+          setProperty(res.data.data);
+          console.log(res.data.data.length);
+        })
+        .finally(() => setLoading(false));
     }
   };
 
   const handleDeletePost = async (post_id) => {
     if (theUser.data) {
+      setLoading(true);
       axios({
         method: "delete",
         url: `${Config.url.api}/property/${post_id}`,
@@ -38,17 +43,40 @@ export default function MyPosts() {
           Authorization: `<Bearer> ${theUser.token || theUser.data.token}`,
         },
         data: { property },
-      }).then((res) => {
-        if (res.data.status) {
-          handleLoadMyPosts();
-        } else {
-          alert("Somthing went wrong while deleting the post");
-        }
-      });
+      })
+        .then((res) => {
+          if (res.data.status) {
+            handleLoadMyPosts();
+          } else {
+            alert("Somthing went wrong while deleting the post");
+          }
+        })
+        .finally(() => setLoading(false));
     } else {
       alert("User authentication failed");
     }
   };
+  const handlePromotedPost = async (post_id) => {
+    if (theUser.data) {
+      axios({
+        method: "post",
+        url: `${Config.url.payment}/payment/${post_id}`,
+      })
+        .then((res) => {
+          window.location.href = res.data.url;
+          return false;
+        })
+        .catch(() => {
+          alert("Something went wrong");
+        });
+    } else {
+      alert("User authentication failed for promotion");
+    }
+  };
+
+  if (loading) {
+    return <ProgressBar />;
+  }
 
   return (
     <div className="propContainer">
@@ -89,6 +117,18 @@ export default function MyPosts() {
                     >
                       Delete
                     </button>
+                    {theProperty.isPro ? (
+                      <button disabled className="btn btn-success mr-1">
+                        Promoted
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handlePromotedPost(theProperty._id)}
+                        className="btn btn-warning mr-1"
+                      >
+                        Promote
+                      </button>
+                    )}
                   </div>
                 </div>
               );

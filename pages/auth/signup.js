@@ -9,11 +9,11 @@ export default function Signup() {
   const passwordLength = 70;
   const [datum, setDatum] = useRecoilState(user);
   const [data, setData] = useState({
-    name: "Noel",
-    phoneNumber: "9976089117",
-    email: "noeljose1998af@gmaifl.com",
-    password: "Mirage20#@",
-    confirmPassword: "Mirage20#@",
+    name: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [inputType, setInputType] = useState(true);

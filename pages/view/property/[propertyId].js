@@ -9,8 +9,10 @@ import PropertyDetails from "../../../components/core/PropertyDetails";
 import { useJsApiLoader, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Floors from "../../../components/core/Floors";
 import ImageSlider from "../../../components/support/ImageSlider";
+import ProgressBar from "../../../components/support/ProgressBar";
 
 export default function PropertyView() {
+  const [loading, setLoading] = useState(true);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyD1A1aNBxTVVNxtYKRbFWZm9uyWwJVag5E",
   });
@@ -31,22 +33,25 @@ export default function PropertyView() {
   }, [theUser, router.isReady]);
 
   const loadData = async (id) => {
+    setLoading(true);
     await axios({
       method: "get",
       url: `${Config.url.api}/property/post/${id}`,
-    }).then((res) => {
-      setProperty(res.data.data);
-      setAgent(res.data.datum);
-      let processedImages = res.data.data.photos.map(
-        (img) => `${Config.url.GCP_GC_IMG}/${img}`
-      );
+    })
+      .then((res) => {
+        setProperty(res.data.data);
+        setAgent(res.data.datum);
+        let processedImages = res.data.data.photos.map(
+          (img) => `${Config.url.GCP_GC_IMG}/${img}`
+        );
 
-      setImages(() => processedImages);
-    });
+        setImages(() => processedImages);
+      })
+      .finally(() => setLoading(false));
   };
 
   const handleLike = async (propert_id) => {
-    console.log(theUser.data.token);
+    setLoading(true);
     await axios({
       method: "put",
       url: `${Config.url.api}/property/save/${propert_id}`,
@@ -54,13 +59,15 @@ export default function PropertyView() {
         "Content-Type": "application/json",
         Authorization: `<Bearer> ${theUser.data.token}`,
       },
-    }).then((res) => {
-      window.location.reload();
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        window.location.reload();
+        console.log(res);
+      })
+      .finally(() => setLoading(false));
   };
   const handleUnLike = async (propert_id) => {
-    console.log(theUser.data.token);
+    setLoading(true);
     await axios({
       method: "put",
       url: `${Config.url.api}/property/unsave/${propert_id}`,
@@ -68,10 +75,12 @@ export default function PropertyView() {
         "Content-Type": "application/json",
         Authorization: `<Bearer> ${theUser.data.token}`,
       },
-    }).then((res) => {
-      window.location.reload();
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        window.location.reload();
+        console.log(res);
+      })
+      .finally(() => setLoading(false));
   };
 
   function tokenToId(token) {
@@ -81,7 +90,10 @@ export default function PropertyView() {
   }
 
   if (!isLoaded) {
-    return <div>loading</div>;
+    return <ProgressBar />;
+  }
+  if (loading) {
+    return <ProgressBar />;
   }
 
   return (

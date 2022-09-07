@@ -4,9 +4,10 @@ import { useRecoilState } from "recoil";
 import axios from "axios";
 import Config from "../../components/lib/Config";
 import Link from "next/link";
+import ProgressBar from "../../components/support/ProgressBar";
 export default function MyPosts() {
+  const [loading, setLoading] = useState(true);
   const [theUser, setTheUser] = useRecoilState(user);
-
   const [property, setProperty] = useState([]);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function MyPosts() {
 
   const handleLoadMyPosts = async () => {
     if (theUser.data) {
+      setLoading(true);
       axios({
         method: "get",
         url: `${Config.url.api}/property/mysavedproperty`,
@@ -22,36 +24,17 @@ export default function MyPosts() {
           Authorization: `<Bearer> ${theUser.token || theUser.data.token}`,
         },
         data: { property },
-      }).then((res) => {
-        setProperty(res.data.data);
-        console.log(res.data.data.length);
-      });
-    }
-  };
-
-  const handleDeletePost = async (post_id) => {
-    if (theUser.data) {
-      axios({
-        method: "delete",
-        url: `${Config.url.api}/property/${post_id}`,
-        headers: {
-          Authorization: `<Bearer> ${theUser.token || theUser.data.token}`,
-        },
-        data: { property },
-      }).then((res) => {
-        if (res.data.status) {
-          handleLoadMyPosts();
-        } else {
-          alert("Somthing went wrong while deleting the post");
-        }
-      });
-    } else {
-      alert("User authentication failed");
+      })
+        .then((res) => {
+          setProperty(res.data.data);
+          console.log(res.data.data.length);
+        })
+        .finally(() => setLoading(false));
     }
   };
 
   const handleLike = async (propert_id) => {
-    console.log(theUser.data.token);
+    setLoading(true);
     await axios({
       method: "put",
       url: `${Config.url.api}/property/save/${propert_id}`,
@@ -59,11 +42,14 @@ export default function MyPosts() {
         "Content-Type": "application/json",
         Authorization: `<Bearer> ${theUser.data.token}`,
       },
-    }).then((res) => {
-      window.location.reload();
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        window.location.reload();
+        console.log(res);
+      })
+      .finally(() => setLoading(false));
   };
+
   const handleUnLike = async (propert_id) => {
     console.log(theUser.data.token);
     await axios({
@@ -73,16 +59,22 @@ export default function MyPosts() {
         "Content-Type": "application/json",
         Authorization: `<Bearer> ${theUser.data.token}`,
       },
-    }).then((res) => {
-      window.location.reload();
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        window.location.reload();
+        console.log(res);
+      })
+      .finally(() => setLoading(false));
   };
 
   function tokenToId(token) {
     let base64 = token.split(".")[1];
 
     return JSON.parse(atob(base64)).id;
+  }
+
+  if (loading) {
+    return <ProgressBar />;
   }
 
   return (
