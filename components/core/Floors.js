@@ -8,34 +8,34 @@ export default function Floors({ floors }) {
         return (
           <div className={style.floor} key={key}>
             <div className={style.floorDetails}>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Floor No.</strong>
                 {floor.floor_number}
               </p>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Avaliability</strong>
                 {floor.avaliable}
               </p>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Condition</strong>
                 {floor.condition}
               </p>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Floor Size</strong>
                 {floor.floor_size}
               </p>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Period Of Tenure</strong>
                 {floor.period_of_tenure}
               </p>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Rate</strong>${floor.rate}
               </p>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Purpose</strong>
                 {floor.space_use}
               </p>
-              <p>
+              <p className="color">
                 <strong className={style.floorLabel}>Term</strong>
                 {floor.term}
               </p>
@@ -46,13 +46,13 @@ export default function Floors({ floors }) {
               {Array.isArray(floor.amenities) && floor.amenities.length > 0 ? (
                 floor.amenities.map((amenity, indexKey) => {
                   return (
-                    <p key={indexKey}>
+                    <p className="color" key={indexKey}>
                       {indexKey + 1}. {amenity}
                     </p>
                   );
                 })
               ) : (
-                <p> Non-Mentioned</p>
+                <p className="color"> Non-Mentioned</p>
               )}
             </div>
           </div>
