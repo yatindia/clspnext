@@ -129,7 +129,7 @@ export default function UserInfoPanel() {
               overflowWrap: "break-word",
             }}
           >
-            <h2 className="text-center">
+            <h2 className="text-center color">
               Hello, {userInfo.name ? userInfo.name : "..."}
             </h2>
           </div>
