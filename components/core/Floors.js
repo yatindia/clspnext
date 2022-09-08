@@ -40,8 +40,8 @@ export default function Floors({ floors }) {
                 {floor.term}
               </p>
             </div>
-            <div className={style.Amenities}>
-              <h3>Floor Amenities</h3>
+            <div style={{ marginBottom: "10px" }} className={style.Amenities}>
+              <h3 className="color">Floor Amenities</h3>
 
               {Array.isArray(floor.amenities) && floor.amenities.length > 0 ? (
                 floor.amenities.map((amenity, indexKey) => {
