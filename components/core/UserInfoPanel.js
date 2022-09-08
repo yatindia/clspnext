@@ -93,14 +93,14 @@ export default function UserInfoPanel() {
 
     await axios({
       method: "post",
-      url: `${Config.url.api}/user//profileupdate`,
+      url: `${Config.url.api}/user/profileupdate`,
       headers: {
         Authorization: `<Bearer> ${userData.data.token}`,
       },
       data: userInfo,
     }).then((res) => {
       if (res.status) {
-        alert("Profile Picture will take sometime to update");
+        alert("Profile updated");
       }
     });
   };
@@ -123,7 +123,16 @@ export default function UserInfoPanel() {
               </p>
             </div>
           </div>
-          <h2>Hello, {userInfo.name ? userInfo.name : "..."}</h2>
+          <div
+            style={{
+              width: "200px",
+              overflowWrap: "break-word",
+            }}
+          >
+            <h2 className="text-center">
+              Hello, {userInfo.name ? userInfo.name : "..."}
+            </h2>
+          </div>
         </div>
         <div className={style.infoContainer}>
           <div className={style.userInfo}>
@@ -136,6 +145,7 @@ export default function UserInfoPanel() {
             />
             <TextInput
               value={userInfo.email}
+              disabled={true}
               placeholder="email"
               formInput={(value) => {
                 setUserInfo({ ...userInfo, email: value });

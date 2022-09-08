@@ -123,7 +123,7 @@ export default function Login() {
           <p
             style={{ cursor: "pointer" }}
             onClick={() => setShowPassword(!showPassword)}
-            className="pt-2"
+            className="pt-2 color"
           >
             {showPassword ? "Hide" : "Show"}Password
           </p>

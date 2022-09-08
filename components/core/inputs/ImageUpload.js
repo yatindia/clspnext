@@ -53,7 +53,7 @@ export default function ImageUpload(props) {
           </div>
         </div>
       ) : (
-        <div className="file btn btn-lg ">
+        <div className="file">
           <input
             ref={inputRef}
             className="fileinput d-none"
@@ -66,7 +66,7 @@ export default function ImageUpload(props) {
             onClick={() => {
               inputRef.current.click();
             }}
-            className="m-2 btn btn-success"
+            className="btn-main"
           >
             Upload
           </button>
@@ -74,7 +74,7 @@ export default function ImageUpload(props) {
             onClick={() => {
               props.onDelete();
             }}
-            className="m-2 btn btn-danger"
+            className="btn-red"
           >
             Remove
           </button>

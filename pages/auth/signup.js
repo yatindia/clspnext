@@ -50,6 +50,7 @@ export default function Signup() {
         if (data.status) {
         } else {
           alert(data.message);
+          window.location.href = "/auth/login";
         }
       });
   };

@@ -34,13 +34,20 @@ export function SelectInput(props) {
   );
 }
 
-export function TextInput({ placeholder, value, formInput, type = "text" }) {
+export function TextInput({
+  placeholder,
+  value,
+  formInput,
+  type = "text",
+  disabled = false,
+}) {
   return (
     <div className="formInputContainer">
       <label className="formLabel color" htmlFor="">
         {placeholder}
       </label>
       <input
+        disabled={disabled}
         type={type}
         value={value}
         className="formInput color"

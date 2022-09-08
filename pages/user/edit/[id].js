@@ -157,6 +157,30 @@ export default function EditProperty() {
               />
             );
           })}
+
+          <div className="singleImage">
+            <div className="file">
+              <button
+                style={{
+                  height: "30px",
+                  aspectRatio: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  backgroundColor: "#14213D",
+                  border: "none",
+                  color: "#fff",
+                }}
+                onClick={() => {
+                  setProperty({
+                    ...property,
+                    photos: [...property.photos, ""],
+                  });
+                }}
+              >
+                +
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className={`${style.textInputContainer}`}>

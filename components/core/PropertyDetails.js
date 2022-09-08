@@ -20,6 +20,7 @@ export default function PropertyDetails({ property, agent }) {
             data[0] == "video" ||
             data[0] == "creationDate" ||
             data[0] == "renovated" ||
+            data[0] == "liked" ||
             data[0] == "_id"
           ) {
             return null;

@@ -155,25 +155,51 @@ export default function Navigation() {
         >
           {authenticated ? (
             <>
+              <Link href="/">
+                <a className={style.a}>Home</a>
+              </Link>
+              <Link href="/about">
+                <a className={style.a}>About</a>
+              </Link>
               <Link href="/user">
-                <a className={style.a}>Account</a>
+                <a onClick={() => setMobileNavOpen(false)} className={style.a}>
+                  Account
+                </a>
               </Link>
 
               <Link href="/user/myposts">
-                <a className={style.a}>My Posts</a>
+                <a onClick={() => setMobileNavOpen(false)} className={style.a}>
+                  My Posts
+                </a>
               </Link>
 
               <Link href="/user/saved">
-                <a className={style.a}>Saved Posts</a>
+                <a onClick={() => setMobileNavOpen(false)} className={style.a}>
+                  Saved Posts
+                </a>
               </Link>
 
               <Link href="/search">
-                <a className={style.a}>Search</a>
+                <a onClick={() => setMobileNavOpen(false)} className={style.a}>
+                  Search
+                </a>
               </Link>
 
               <Link href="/user/post">
-                <a className={style.a}>make Post</a>
+                <a onClick={() => setMobileNavOpen(false)} className={style.a}>
+                  Make Post
+                </a>
               </Link>
+
+              <button
+                onClick={() => {
+                  logout();
+                  setMobileNavOpen(false);
+                }}
+                className={`btn ${style.logout}`}
+              >
+                Logout
+              </button>
             </>
           ) : (
             <>
@@ -182,6 +208,15 @@ export default function Navigation() {
               </Link>
               <Link href="/about">
                 <a className={style.a}>About</a>
+              </Link>
+              <Link href="/auth/login">
+                <a className={`${style.navLink} nav-link`}>Login</a>
+              </Link>
+
+              <Link href="/auth/signup">
+                <a className={`${style.navLink} ${style.logout} nav-link btn`}>
+                  Signup
+                </a>
               </Link>
             </>
           )}

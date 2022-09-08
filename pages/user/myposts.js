@@ -102,8 +102,8 @@ export default function MyPosts() {
                   ></div>
 
                   <div className="card-body">
-                    <h5 className="card-title">{theProperty.title}</h5>
-                    <p className="card-text">
+                    <h5 className="card-title color">{theProperty.title}</h5>
+                    <p className="card-text color">
                       {theProperty.address_1}
                       <br />
                       {theProperty.address_2}

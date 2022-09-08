@@ -28,10 +28,17 @@ export default function Post() {
   const [property, setProperty] = useState(PropertySchema);
 
   const handleSubmit = async (e) => {
-    if (property.photos.length < 1) {
-      alert("The Porperties Photo can't be empty");
+    let photoCheck = property.photos.filter((photo) => {
+      if (photo !== undefined) {
+        return photo;
+      }
+    });
+    if (photoCheck < 1) {
+      alert("The Properties Photo can't be empty");
       return false;
     } else {
+      setProperty({ ...property, photos: photoCheck });
+
       axios({
         method: "post",
         url: `${Config.url.api}/property/create`,
@@ -68,6 +75,7 @@ export default function Post() {
             alert(res.data.message);
           } else {
             alert(res.data.message);
+            window.location.href = "/user/myposts";
           }
         }
       });
@@ -143,6 +151,30 @@ export default function Post() {
             </div>
           );
         })}
+
+        <div className="singleImage">
+          <div className="file">
+            <button
+              style={{
+                height: "30px",
+                aspectRatio: 1,
+                display: "flex",
+                justifyContent: "center",
+                backgroundColor: "#14213D",
+                border: "none",
+                color: "#fff",
+              }}
+              onClick={() => {
+                setProperty({
+                  ...property,
+                  photos: [...property.photos, ""],
+                });
+              }}
+            >
+              +
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className={`${style.textInputContainer}`}>
@@ -184,7 +216,7 @@ export default function Post() {
           }}
         />
         <TextInput
-          placeholder="Youtube Video Link"
+          placeholder="Property Video Link (optional)"
           value={property.video}
           formInput={(value) => {
             setProperty({ ...property, video: value });
