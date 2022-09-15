@@ -46,12 +46,12 @@ export default function SearchHero() {
               <input
                 type="search"
                 className={style.index__query}
-                maxlength="512"
-                autocomplete="off"
+                maxLength="512"
+                autoComplete="off"
                 title="Search"
                 aria-label="Search"
                 dir="ltr"
-                spellcheck="false"
+                spellCheck="false"
                 onInput={(e) => {
                   setSearch({ ...search, search: e.target.value });
                 }}
