@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropertySchema, {
   floorSchema,
 } from "../../components/lib/PropertySchema";
@@ -15,24 +15,38 @@ import ImageUpload from "../../components/core/inputs/ImageUpload";
 import { user } from "../../components/core/Atoms";
 import { useRecoilState } from "recoil";
 import State from "../../components/lib/USStates";
-import style from "../../styles/Post.module.sass";
+import style from "../../styles/pages/Post.module.sass";
 import ProgressBar from "../../components/support/ProgressBar";
 
 export default function Post() {
+  //check Login
+  const [theUser, setTheUser] = useRecoilState(user);
+
+  useEffect(() => {
+    handleCheckVerified();
+    let theUserl = JSON.parse(localStorage.getItem("user"));
+    if (!theUserl?.data) {
+      window.location.href = "/";
+    }
+  }, []);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyD1A1aNBxTVVNxtYKRbFWZm9uyWwJVag5E",
   });
 
-  const [theUser, setTheUser] = useRecoilState(user);
-
   const [property, setProperty] = useState(PropertySchema);
 
   const handleSubmit = async (e) => {
+    if (Array.isArray(property.highlights) && property.highlights < 2) {
+      alert("please add at least 2 property high lights");
+      return false;
+    }
     let photoCheck = property.photos.filter((photo) => {
       if (photo !== undefined) {
         return photo;
       }
     });
+
     if (photoCheck < 1) {
       alert("The Properties Photo can't be empty");
       return false;
@@ -56,7 +70,6 @@ export default function Post() {
             let parseError = "";
 
             message.map((data) => {
-              console.log(data);
               parseError += `Please enter:  '${data.replace("_", " ")}' \n`;
             });
 
@@ -80,6 +93,43 @@ export default function Post() {
         }
       });
     }
+  };
+
+  const handleCheckVerified = async () => {
+    await axios({
+      method: "post",
+      url: `${Config.url.api}/user/myprofile`,
+      headers: {
+        Authorization: `<Bearer> ${theUser.data.token}`,
+      },
+    }).then((res) => {
+      console.log(res.data.data.accountVerified);
+      if (!res.data.data.accountVerified) {
+        alert(
+          "Your Account is not verified yet, Only verified accounts are allowed to make post"
+        );
+        window.location.href = "/user";
+
+        if (confirm("Do you want us to send a reverification link") == true) {
+          axios({
+            url: `${Config.url.api}/auth/reverification`,
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            data: { email: datau.email },
+          }).then((res) => {
+            if (res.data.status) {
+              alert("reverification send");
+            } else {
+              alert("reverification failed to send ");
+            }
+          });
+
+          window.location.href = "/user";
+        } else {
+          window.location.href = "/user";
+        }
+      }
+    });
   };
 
   if (!isLoaded) {
@@ -384,7 +434,6 @@ export default function Post() {
                   let theProperty = [...property.floors];
 
                   theProperty.splice(index, 1);
-                  console.log(theProperty, index);
 
                   setProperty((oldProperty) => {
                     return { ...oldProperty, floors: [...theProperty] };

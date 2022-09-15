@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { TextInput } from "./inputs/FormInputs";
 import style from "../../styles/UserInfoPanel.module.sass";
 import Config from "../lib/Config";
 import CheckLogin from "../lib/CheckLogin";
 import { user } from "../core/Atoms";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import Skloading from "../support/Skloading";
+import Swal from "sweetalert2";
 export default function UserInfoPanel() {
   const [userInfo, setUserInfo] = useState({});
   const [userData, setUserData] = useRecoilState(user);
@@ -19,12 +18,6 @@ export default function UserInfoPanel() {
     }
   }, [userData]);
 
-  function tokenToId(token) {
-    let base64 = token.split(".")[1];
-
-    return JSON.parse(atob(base64)).id;
-  }
-
   const handleLoadInfo = async () => {
     axios({
       method: "post",
@@ -34,162 +27,51 @@ export default function UserInfoPanel() {
       },
     }).then((res) => {
       if (res.status) {
+        if (
+          res.data.data?.areYouBuyer == "empty" ||
+          !res.data.data?.areYouBuyer
+        ) {
+          Swal.fire({
+            title: "Are you a",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Buyer",
+            denyButtonText: `Seller`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              handleYouAre("buyer");
+              Swal.fire("Thank you!", "", "success");
+            } else if (result.isDenied) {
+              handleYouAre("seller");
+              Swal.fire("Thank you!", "", "success");
+            }
+          });
+        }
+
         setUserInfo(res.data.data);
       }
     });
   };
 
-  const uploadImage = async (e) => {
-    const img = e.target.files[0];
-    let form = new FormData();
-    form.append("avatar", img);
-    form.append("_id", tokenToId(userData.data.token));
-    await axios({
+  const handleYouAre = async (status) => {
+    //areYouBuyer
+
+    axios({
       method: "post",
-      url: `${Config.url.api}/UserImage`,
+      url: `${Config.url.api}/user/areYouBuyer`,
       headers: {
         Authorization: `<Bearer> ${userData.data.token}`,
       },
-      data: form,
-    }).then((res) => {
-      if (res.status) {
-        handleLoadInfo();
-        alert("Profile Picture might take sometime to update");
-      } else {
-        alert("Something went wrong while updating.. please try later");
-      }
+      data: { areYouBuyer: status },
     });
   };
 
-  const handlePasswordUpdate = async () => {
-    let password, oldPassword;
-
-    password = prompt("Enter New password");
-    oldPassword = prompt("Enter Old password");
-
-    await axios({
-      method: "post",
-      url: `${Config.url.api}/user/passwordupdate`,
-      headers: {
-        Authorization: `<Bearer> ${userData.data.token}`,
-      },
-      data: { password, oldPassword },
-    }).then((res) => {
-      console.log(res);
-      if (res.data.status) {
-        alert("Password updated");
-      } else {
-        alert(res.data.message);
-      }
-    });
-  };
-
-  const test = () => {
-    file.current.click();
-  };
-
-  const handleUpdate = async () => {
-    // /profileupdate
-
-    await axios({
-      method: "post",
-      url: `${Config.url.api}/user/profileupdate`,
-      headers: {
-        Authorization: `<Bearer> ${userData.data.token}`,
-      },
-      data: userInfo,
-    }).then((res) => {
-      if (res.status) {
-        alert("Profile updated");
-      }
-    });
-  };
-
-  if (Object.entries(userInfo).length > 0) {
-    return (
-      <div className={style.container}>
-        <div className={style.porfileImageContainer}>
-          <div
-            onClick={() => test()}
-            className={style.porfileImage}
-            style={{
-              backgroundImage: `url(${Config.url.GCP_GC_P_IMG}/${userInfo.profile})`,
-            }}
-          >
-            <div className={style.porfileImageRemove}>
-              <p className={style.porfileImageText}>
-                Click to <br />
-                Update Image
-              </p>
-            </div>
-          </div>
-          <div
-            style={{
-              width: "200px",
-              overflowWrap: "break-word",
-            }}
-          >
-            <h2 className="text-center color">
-              Hello, {userInfo.name ? userInfo.name : "..."}
-            </h2>
-          </div>
-        </div>
-        <div className={style.infoContainer}>
-          <div className={style.userInfo}>
-            <TextInput
-              placeholder="name"
-              value={userInfo.name}
-              formInput={(value) => {
-                setUserInfo({ ...userInfo, name: value });
-              }}
-            />
-            <TextInput
-              value={userInfo.email}
-              disabled={true}
-              placeholder="email"
-              formInput={(value) => {
-                setUserInfo({ ...userInfo, email: value });
-              }}
-            />
-            <TextInput
-              value={userInfo.phoneNumber}
-              placeholder="mobile"
-              formInput={(value) => {
-                setUserInfo({ ...userInfo, phoneNumber: value });
-              }}
-            />
-            <input
-              style={{ display: "none" }}
-              ref={file}
-              className="fileinput"
-              type="file"
-              onInput={(e) => {
-                uploadImage(e);
-              }}
-            />
-            <div style={{ display: "flex", gap: "10px" }}>
-              <button
-                onClick={() => {
-                  handleUpdate();
-                }}
-                className={style.UpdateButton}
-              >
-                Update
-              </button>
-              <button
-                onClick={() => {
-                  handlePasswordUpdate();
-                }}
-                className={`${style.UpdateButton} text-center`}
-              >
-                Password Update
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  } else {
-    return <Skloading />;
-  }
+  return (
+    <div className={style.container}>
+      <h2 className="text-center color">
+        Hello, {userInfo.name ? userInfo.name : "..."}
+      </h2>
+    </div>
+  );
 }

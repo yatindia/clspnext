@@ -10,6 +10,13 @@ export default function MyPosts() {
   const [theUser, setTheUser] = useRecoilState(user);
   const [property, setProperty] = useState([]);
 
+  //check Login
+  useEffect(() => {
+    let theUser = JSON.parse(localStorage.getItem("user"));
+    if (!theUser?.data) {
+      window.location.href = "/";
+    }
+  }, []);
   useEffect(() => {
     handleLoadMyPosts();
   }, [theUser]);
@@ -27,7 +34,6 @@ export default function MyPosts() {
       })
         .then((res) => {
           setProperty(res.data.data);
-          console.log(res.data.data.length);
         })
         .finally(() => setLoading(false));
     }
@@ -45,13 +51,11 @@ export default function MyPosts() {
     })
       .then((res) => {
         window.location.reload();
-        console.log(res);
       })
       .finally(() => setLoading(false));
   };
 
   const handleUnLike = async (propert_id) => {
-    console.log(theUser.data.token);
     await axios({
       method: "put",
       url: `${Config.url.api}/property/unsave/${propert_id}`,
@@ -62,7 +66,6 @@ export default function MyPosts() {
     })
       .then((res) => {
         window.location.reload();
-        console.log(res);
       })
       .finally(() => setLoading(false));
   };
@@ -82,7 +85,7 @@ export default function MyPosts() {
       {property == [] || property.length == 0 ? (
         <h1 className="text-center mt-5">No Saved Properties Found</h1>
       ) : (
-        <h1 className="text-center mt-2">My Properties</h1>
+        <h1 className="text-center mt-2">Saved Properties</h1>
       )}
       <div className="prop-row">
         {property == [] || property.length == 0
@@ -108,7 +111,9 @@ export default function MyPosts() {
                       {theProperty.address_2}
                     </p>
                     <Link href={`/view/property/${theProperty.uid}`}>
-                      <a className="btn btn-primary mr-1">View</a>
+                      <a className="btn btn-primary mr-1">
+                        <img width={"20px"} src="/icons/view.png" />
+                      </a>
                     </Link>
                     {theUser && theUser.data.token ? (
                       Array.isArray(theProperty.liked) &&
@@ -119,14 +124,14 @@ export default function MyPosts() {
                           className="btn btn-danger ml-3"
                           onClick={() => handleUnLike(theProperty._id)}
                         >
-                          Un Like
+                          <img width={"20px"} src="/icons/td.png" />
                         </button>
                       ) : (
                         <button
                           className="btn btn-primary ml-3"
                           onClick={() => handleLike(theProperty._id)}
                         >
-                          Like
+                          <img width={"20px"} src="/icons/tu.png" />
                         </button>
                       )
                     ) : null}

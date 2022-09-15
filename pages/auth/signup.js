@@ -5,9 +5,16 @@ import { useRecoilState } from "recoil";
 import axios from "axios";
 import Config from "../../components/lib/Config";
 export default function Signup() {
+  useEffect(() => {
+    let theUser = JSON.parse(localStorage.getItem("user"));
+    if (theUser?.data) {
+      window.location.href = "/user";
+    }
+  }, []);
+
   const nameLength = 50;
   const passwordLength = 70;
-  const [datum, setDatum] = useRecoilState(user);
+  const [userData, setUserData] = useRecoilState(user);
   const [data, setData] = useState({
     name: "",
     phoneNumber: "",
@@ -45,12 +52,18 @@ export default function Signup() {
     await axios
       .post(`${Config.url.api}/auth/register`, data)
       .then(({ data }) => {
-        console.log(data);
-
         if (data.status) {
+          console.log(data);
+          localStorage.setItem("user", JSON.stringify(data));
+          setUserData({
+            status: "LGIN",
+            token: data.token,
+          });
+          alert(data.message);
+          window.location.href = "/user";
         } else {
           alert(data.message);
-          window.location.href = "/auth/login";
+          // window.location.href = "/auth/login";
         }
       });
   };
@@ -86,16 +99,21 @@ export default function Signup() {
 
         <div className={style.container}>
           <label className={style.label}>
-            Mobile Number <small>(Ex: 2025886500)</small>
+            Mobile Number <small>(Ex: 2025886500- Only US Numbers)</small>
           </label>
           <input
+            type="tel"
+            pattern="[0-9]{0,5}"
             onInput={(e) => {
-              setData({ ...data, phoneNumber: e.target.value });
+              if (e.target.value < 10000000000) {
+                setData({ ...data, phoneNumber: e.target.value });
+              }
             }}
+            value={data.phoneNumber}
             className={style.input}
             id="mobile"
             placeholder="Mobile Number"
-            maxLength={11}
+            // maxLength={10}
           />
         </div>
 
@@ -108,6 +126,7 @@ export default function Signup() {
             className={style.input}
             id="email"
             placeholder="Your Email Id"
+            maxLength={320}
           />
         </div>
 
@@ -171,7 +190,8 @@ export default function Signup() {
             placeholder="Re-Type Password"
             type={inputType ? "password" : "text"}
           />
-          {data.confirmPassword && data.password != data.confirmPassword ? (
+          {data.confirmPassword.length >= data.password.length &&
+          data.password != data.confirmPassword ? (
             <p className={style.red}>The passwords should match</p>
           ) : null}
         </div>

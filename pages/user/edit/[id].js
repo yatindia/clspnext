@@ -16,9 +16,17 @@ import { user } from "../../../components/core/Atoms";
 import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import State from "../../../components/lib/USStates";
-import style from "../../../styles/Post.module.sass";
+import style from "../../../styles/pages/Post.module.sass";
 
 export default function EditProperty() {
+  //check Login
+  useEffect(() => {
+    let theUser = JSON.parse(localStorage.getItem("user"));
+    if (!theUser?.data) {
+      window.location.href = "/";
+    }
+  }, []);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyD1A1aNBxTVVNxtYKRbFWZm9uyWwJVag5E",
   });
@@ -92,7 +100,6 @@ export default function EditProperty() {
     return <div>loading</div>;
   }
   if (property && property.photos) {
-    console.log(property.photos);
     return (
       <>
         <GoogleMap

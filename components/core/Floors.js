@@ -1,6 +1,6 @@
 import React from "react";
 
-import style from "../../styles/ViewProperty.module.sass";
+import style from "../../styles/pages/ViewProperty.module.sass";
 export default function Floors({ floors }) {
   return (
     <div className={style.floors}>
@@ -9,7 +9,7 @@ export default function Floors({ floors }) {
           <div className={style.floor} key={key}>
             <div className={style.floorDetails}>
               <p className="color">
-                <strong className={style.floorLabel}>Floor No.</strong>
+                <strong className={style.floorLabel}>Floor No</strong>
                 {floor.floor_number}
               </p>
               <p className="color">
@@ -41,18 +41,18 @@ export default function Floors({ floors }) {
               </p>
             </div>
             <div style={{ marginBottom: "10px" }} className={style.Amenities}>
-              <h3 className="color">Floor Amenities</h3>
+              <h3 className="color mt-3 ml-2">Floor Amenities</h3>
 
               {Array.isArray(floor.amenities) && floor.amenities.length > 0 ? (
                 floor.amenities.map((amenity, indexKey) => {
                   return (
-                    <p className="color" key={indexKey}>
+                    <p className={`color ${style.floorAmenity}`} key={indexKey}>
                       {indexKey + 1}. {amenity}
                     </p>
                   );
                 })
               ) : (
-                <p className="color"> Non-Mentioned</p>
+                <p className={`color ${style.floorAmenity}`}> Non-Mentioned</p>
               )}
             </div>
           </div>

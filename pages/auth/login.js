@@ -14,6 +14,13 @@ export default function Login() {
     password: "",
   });
 
+  useEffect(() => {
+    let theUser = JSON.parse(localStorage.getItem("user"));
+    if (theUser?.data) {
+      window.location.href = "/user";
+    }
+  }, []);
+
   const handleSubmit = async () => {
     if (datau.email == "") {
       alert("Please Enter Email");

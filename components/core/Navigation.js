@@ -2,88 +2,66 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import style from "../../styles/Navigation.module.sass";
 import CheckLogin from "../lib/CheckLogin";
-import Config from "../lib/Config";
 import { user } from "../core/Atoms";
 import { useRecoilState } from "recoil";
-import axios from "axios";
+import { useRouter } from "next/router";
 export default function Navigation() {
   const [authenticated, setAuthenticated] = useState(false);
-  const [loginState, setloginState] = useState(CheckLogin());
   const [userData, setUserData] = useRecoilState(user);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [profileImage, setProfileImage] = useState("/user.png");
+
   let login = CheckLogin();
+  const route = useRouter();
 
   useEffect(() => {
     login.status == "LGIN" ? setAuthenticated(true) : null;
-    // if (login.status == "LGIN") {
-    //   axios({
-    //     method: "post",
-    //     url: `${Config.url.api}/user/myprofileimage`,
-    //     headers: {
-    //       Authorization: `<Bearer> ${userData.data.token}`,
-    //     },
-    //   }).then((res) => {
-    //     if (res.status) {
-    //       setProfileImage(
-    //         `${Config.url.GCP_GC_P_IMG}/${res.data.data.profile}`
-    //       );
-    //     }
-    //   });
-    // }
   }, [login]);
 
   const logout = () => {
+    checkRoute("saved");
     setUserData({ status: "NOLG" });
     localStorage.clear();
     window.location.href = "/";
+  };
+
+  const checkRoute = (URI) => {
+    return route.pathname.split("/").includes(URI);
   };
 
   const LoggedInOptions = () => {
     return (
       <div className={`${style.nav}form-inline ms-auto`}>
         <ul className="navbar-nav mr-auto">
-          {/* <li className="nav-item dropdown">
-            <button
-              className="nav-link btn"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img className={style.userImg} src={profileImage} />
-            </button>
-
-            <div
-              className="dropdown-menu"
-              aria-labelledby="navbarDropdown"
-            ></div>
-          </li> */}
-
           <li className="nav-item">
             <Link href="/user">
               <a className={`${style.navLink} nav-link`}>Account</a>
             </Link>
           </li>
           <li className="nav-item">
-            <Link href="/user/myposts">
-              <a className={`${style.navLink} nav-link`}>My Posts</a>
+            <Link href="/user/settings">
+              <a className={`${style.navLink} nav-link`}>Settings</a>
             </Link>
           </li>
+
           <li className="nav-item">
             <Link href="/user/saved">
-              <a className={`${style.navLink} nav-link`}>Saved Posts</a>
+              <a className={`${style.navLink} nav-link`}>
+                <img width="20px" src="/icons/like.png" />
+              </a>
             </Link>
           </li>
           <li className="nav-item">
             <Link href="/search">
-              <a className={`${style.navLink} nav-link`}>Search</a>
+              <a className={`${style.navLink} nav-link`}>
+                <img width="20px" src="/icons/search.png" />
+              </a>
             </Link>
           </li>
           <li className="nav-item">
             <Link href="/user/post">
-              <a className={`${style.navLink} nav-link`}>Post</a>
+              <a className={`${style.navLink} nav-link`}>
+                <img width="20px" src="/icons/newpost.png" />
+              </a>
             </Link>
           </li>
 
@@ -96,7 +74,7 @@ export default function Navigation() {
                 }}
                 className={`${style.navLink} ${style.logout} nav-link btn`}
               >
-                Logout
+                <img width="20px" src="/icons/logout.png" />
               </a>
             </Link>
           </li>

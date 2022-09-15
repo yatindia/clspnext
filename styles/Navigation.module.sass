@@ -9,16 +9,20 @@
     background-color: $primary
     min-height: 10vh
     display: block
+    box-shadow: 1px 1px 3px $tir
+    z-index: 10
     @include mobile()
         display: none
 
 
 .navLink
-    color: $secondary !important
+    color: $tir !important
     display: flex
     justify-content: center
     align-items: center
     height: 100%
+.activeLink
+    color: blue !important
 .userImg
     width: 50px
     display: block
@@ -33,7 +37,7 @@
         border-radius: 0 0 1% 1%
 
 .logout
-    background-color: $secondary
+    background-color: $tir
     color: #ffffff !important
 
 

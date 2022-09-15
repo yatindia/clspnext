@@ -1,0 +1,153 @@
+@import "../_Config"
+
+.slider
+    width: 100vw
+    display: flex
+    // justify-content: center
+    // align-items: center
+    overflow: hidden
+    
+.sliderImage
+    height: 50vh
+    @media print
+         height: 10vh
+
+     
+
+
+//Property Details
+.propertyHighLights
+    width: 70%
+    margin:2% auto
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 20px 
+    @include mobile
+        grid-template-columns: 1fr
+    
+
+.propertyHighLight
+    color: $secondary
+    list-style-position: outside !important
+    text-align: left
+    padding: 1% 5% 1% 0
+
+.property
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    width: 100%
+    @media only screen and (max-width: 1300px)
+        grid-template-columns: 1fr 1fr
+        padding: 2%
+.label
+    color: red
+.info
+    color: $secondary
+    background-color: $primary
+    word-wrap: break-word
+    border-left: 5px solid black
+    padding-left: 10px
+.fullDetail
+    width: 90%
+    margin:2% auto
+    display: grid
+    grid-template-columns: 2fr 1fr
+    @include mobile
+        grid-template-columns: 1fr
+        padding: 2%
+
+.agent
+    display: grid
+    grid-template-columns: 1fr
+    width: 100%
+    padding: 0 10%
+    
+.agentBtnIcon
+    width: 30px
+    margin: 5px
+
+.agentInfo
+    color: $secondary
+    background-color: $tir
+    margin: 2%
+    padding: 2%
+    color: #fff
+    display: flex
+    justify-content: center
+    align-items: center
+    &:hover
+        color: $primary
+
+.fullAgent
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4)
+    padding: 2% 0
+    border-radius: 10px
+
+.agentProfile
+    width: 50%
+    margin: auto
+    height: unset
+    aspect-ratio: 1
+    background-size: cover
+    background-position: center
+    border-radius: 100%
+
+.profile
+    width: 30%
+    margin: auto
+    height: unset
+    aspect-ratio: 1
+    background-size: cover
+    background-position: center
+    border-radius: 100%
+
+.plsLogin
+    width: 90%
+    margin: auto
+    background-color: $secondary
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    padding: 2% 0
+.plsLoginText
+    color: #fff
+
+
+
+//floor
+.floors
+    width: 90%
+    margin: auto
+.floor
+    margin: 5% auto
+    display: grid
+    grid-template-columns: 3fr 7fr
+    border: 5px solid $secondary
+    padding: 2%
+    background-color: $primary
+    border-radius: 10px
+    @include mobile
+        grid-template-columns: 1fr
+.floorDetails
+    background-color: #fff
+    margin-right: 20px
+    padding: 5%
+    border-radius: 5px
+    box-shadow:1px 1px 5px rgba(0, 0, 0, 0.2)
+        
+.floorAmenity
+    background-color: #fff
+    margin-right: 20px
+    padding: 5%
+    border-radius: 5px
+    box-shadow:1px 1px 5px rgba(0, 0, 0, 0.2)
+
+.floorLabel
+    margin-right: 10px
+    &::after
+        content: ": "

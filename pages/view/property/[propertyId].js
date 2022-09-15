@@ -4,12 +4,13 @@ import { user } from "../../../components/core/Atoms";
 import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import Config from "../../../components/lib/Config";
-import style from "../../../styles/ViewProperty.module.sass";
+import style from "../../../styles/pages/ViewProperty.module.sass";
 import PropertyDetails from "../../../components/core/PropertyDetails";
 import { useJsApiLoader, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Floors from "../../../components/core/Floors";
 import ImageSlider from "../../../components/support/ImageSlider";
 import ProgressBar from "../../../components/support/ProgressBar";
+import { RWebShare } from "react-web-share";
 
 export default function PropertyView() {
   const [loading, setLoading] = useState(true);
@@ -139,35 +140,58 @@ export default function PropertyView() {
                     className="btn btn-danger ml-3"
                     onClick={() => handleUnLike(property._id)}
                   >
-                    Unsave
+                    <img width={"20px"} src="/icons/td.png" />
                   </button>
                 ) : (
                   <button
                     className="btn btn-primary ml-3"
                     onClick={() => handleLike(property._id)}
                   >
-                    Save
+                    <img width={"20px"} src="/icons/tu.png" />
                   </button>
                 )
               ) : null}
+
+              <div>
+                <RWebShare
+                  sites={[
+                    "facebook",
+                    "twitter",
+                    "whatsapp",
+                    "reddit",
+                    "linkedin",
+                    "mail",
+                    "copy",
+                  ]}
+                  data={{
+                    text: `${property.title} - Commercial Listings Pro`,
+                    url: `${Config.url.client}/view/${property.uid}`,
+                    title: `${property.title} - Commercial Listings Pro`,
+                  }}
+                  onClick={() => console.log("shared successfully!")}
+                >
+                  <button className="btn btn-dark">Share 🔗</button>
+                </RWebShare>
+              </div>
             </h1>
+
             {Array.isArray(property.highlights) &&
             property.highlights.length > 0 ? (
               <h3 className="text-center">Property Highlights</h3>
             ) : null}
-            <div className={style.propertyHighLights}>
+            <ul className={style.propertyHighLights}>
               {property &&
               Array.isArray(property.highlights) &&
               property.highlights.length > 0
                 ? property.highlights.map((highlight, index) => {
                     return (
-                      <p className={style.propertyHighLight} key={index}>
+                      <li className={style.propertyHighLight} key={index}>
                         {highlight}
-                      </p>
+                      </li>
                     );
                   })
                 : null}
-            </div>
+            </ul>
             <PropertyDetails property={property} agent={agent} />
             {Array.isArray(property.floors) && property.floors.length > 0 ? (
               <Floors floors={property.floors} />

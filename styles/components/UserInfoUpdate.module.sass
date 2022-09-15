@@ -1,0 +1,47 @@
+@import "../_Config"
+
+.container
+    width: 90%
+    padding: 5%
+    margin: 5% auto
+    display: grid
+    grid-template-columns: 1fr
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2)
+
+.subContainer
+    width: 100%
+
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 5px
+    @include mobile
+        grid-template-columns: 1fr
+.textContainer
+    width: 90%
+    padding: 5%
+    margin: 5% auto
+    display: grid
+    grid-template-columns: 1fr 
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2)
+
+
+.inputContainer
+    margin-bottom: 3vh
+    
+.inputContainer2
+    margin-bottom: 3vh
+    grid-column-end: span 2
+    
+
+.label
+    display: block
+    font-weight: bold
+    
+.input
+    display: block
+    width: 100%
+
+
+.textInput
+    display: block
+    width: 100%
