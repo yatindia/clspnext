@@ -6,8 +6,8 @@ export default function SearchHero() {
   const [search, setSearch] = useState({
     search: "",
     for: "sale",
-    state: "Alabama",
-    type: 35242,
+    state: "",
+    type: "office",
   });
 
   const propertPurpose = [
@@ -52,12 +52,14 @@ export default function SearchHero() {
           </div>
           <div className={style.searchBar}>
             <div className={style.state}>
+              <p className="text-white">Select State</p>
               <select
                 onInput={({ target }) => {
                   setSearch({ ...search, state: target.value });
                 }}
                 className={style.stateSelect}
               >
+                <option value="">Select A state</option>
                 {States.map((state, index) => {
                   return (
                     <option key={index} value={state}>
@@ -69,6 +71,7 @@ export default function SearchHero() {
             </div>
 
             <div className={style.state}>
+              <p className="text-white">Type</p>
               <select
                 onInput={({ target }) => {
                   setSearch({ ...search, type: target.value });
@@ -78,7 +81,7 @@ export default function SearchHero() {
                 {propertPurpose.map((purpose, index) => {
                   return (
                     <option key={index} value={purpose}>
-                      For {purpose}
+                      {purpose.toUpperCase()}
                     </option>
                   );
                 })}
@@ -86,6 +89,7 @@ export default function SearchHero() {
             </div>
 
             <div className={style.inputCity}>
+              <p className="text-white">City / Address</p>
               <input
                 type="text"
                 className={style.city}

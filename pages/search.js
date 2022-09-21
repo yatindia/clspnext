@@ -36,24 +36,26 @@ export default function Search() {
   });
 
   useEffect(() => {
-    handleLoadSearch();
     if (router.query) {
-      console.log(router.query);
-      router.query.search ? setsearchQuery(router.query.search) : null;
-      router.query.for ? setPropertFor(router.query.for) : null;
-      router.query.state ? setState(router.query.state) : null;
-      router.query.type ? setPropertPurposeValue(router.query.type) : null;
+      router.query.search ? setsearchQuery(() => router.query.search) : null;
+      router.query.for ? setPropertFor(() => router.query.for) : null;
+      router.query.state ? setState(() => router.query.state) : null;
+      router.query.type
+        ? setPropertPurposeValue(() => router.query.type)
+        : null;
     }
   }, []);
   useEffect(() => {
     handleLoadSearch();
+
+    console.log(searchQuery, state, propertFor, propertPurposeValue);
   }, [
     searchQuery,
-    sizeSearch,
     state,
     propertFor,
-    priceSearch,
     propertPurposeValue,
+    priceSearch,
+    sizeSearch,
   ]);
 
   const handleLoadSearch = async () => {
@@ -68,8 +70,6 @@ export default function Search() {
     priceSearch.min != "" ? (sendData.pmin = priceSearch.min) : null;
     priceSearch.max != "" ? (sendData.pmax = priceSearch.max) : null;
 
-    console.log(sendData);
-
     axios({
       method: "post",
       url: `${Config.url.api}/property/search`,
@@ -78,17 +78,12 @@ export default function Search() {
       },
     })
       .then((res) => {
-        setResults(() => res.data.data[0]);
+        setResults((old) => res.data.data[0]);
+        console.log(res.data.data);
       })
       .finally(() => {
         setLoader(false);
       });
-  };
-
-  const handleSearchClear = async () => {
-    setsearchQuery("");
-    setPropertFor("");
-    setState("");
   };
 
   const propertPurpose = [
@@ -219,7 +214,7 @@ export default function Search() {
       <div className={style.searchBar}>
         <TextInput
           value={searchQuery}
-          placeholder="City/Place"
+          placeholder="City/Address"
           formInput={(value) => {
             setsearchQuery(value);
           }}
@@ -250,7 +245,7 @@ export default function Search() {
           }}
         />
         <div className={style.twice}>
-          <p className={style.title}>Property Size Sq.ft</p>
+          <p className={style.title}>Size Sq.ft</p>
           <div className={style.twiceInput}>
             <input
               type={"number"}
@@ -272,7 +267,7 @@ export default function Search() {
         </div>
 
         <div className={style.twice}>
-          <p className={style.title}>Price Size Sq.ft</p>
+          <p className={style.title}>Price $</p>
           <div className={style.twiceInput}>
             <input
               type={"number"}
