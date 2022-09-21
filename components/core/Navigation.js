@@ -34,32 +34,39 @@ export default function Navigation() {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link href="/user">
-              <a className={`${style.navLink} nav-link`}>Account</a>
+              <a title="Account" className={`${style.navLink} nav-link`}>
+                Account
+              </a>
             </Link>
           </li>
           <li className="nav-item">
             <Link href="/user/settings">
-              <a className={`${style.navLink} nav-link`}>Settings</a>
+              <a title="Settings" className={`${style.navLink} nav-link`}>
+                Settings
+              </a>
             </Link>
           </li>
 
           <li className="nav-item">
             <Link href="/user/saved">
-              <a className={`${style.navLink} nav-link`}>
+              <a
+                title="Saved Properties"
+                className={`${style.navLink} nav-link`}
+              >
                 <img width="20px" src="/icons/like.png" />
               </a>
             </Link>
           </li>
           <li className="nav-item">
             <Link href="/search">
-              <a className={`${style.navLink} nav-link`}>
+              <a title="Search" className={`${style.navLink} nav-link`}>
                 <img width="20px" src="/icons/search.png" />
               </a>
             </Link>
           </li>
           <li className="nav-item">
             <Link href="/user/post">
-              <a className={`${style.navLink} nav-link`}>
+              <a title="Create Post" className={`${style.navLink} nav-link`}>
                 <img width="20px" src="/icons/newpost.png" />
               </a>
             </Link>
@@ -68,6 +75,7 @@ export default function Navigation() {
           <li className="nav-item">
             <Link href="/about">
               <a
+                title="Logout"
                 onClick={(e) => {
                   e.preventDefault();
                   logout();

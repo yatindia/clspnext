@@ -166,18 +166,13 @@ export default function Post() {
           position={property.gps}
         />
       </GoogleMap>
-
-      <button
-        className={style.addFloorButton}
-        onClick={() => {
-          setProperty({
-            ...property,
-            photos: [...property.photos, ""],
-          });
-        }}
-      >
-        Click Here to Add &amp; upload property image
-      </button>
+      <br />
+      <div>
+        <p className="text-center bg-color w-50 d-block m-auto text-white pt-2 pb-2">
+          Click and drag the red marker in the map to locate your property
+        </p>
+      </div>
+      <br />
       <div className="imageContainer">
         {property.photos.map((photo, index) => {
           return (
@@ -251,6 +246,12 @@ export default function Post() {
             "personal",
             "medical",
             "industrial",
+            "retail",
+            "restaurant",
+            "shopping Center",
+            "multifamily",
+            "health Care",
+            "land",
             "multipurpose",
           ]}
           formInput={(value) => {
@@ -405,6 +406,14 @@ export default function Post() {
             setProperty({ ...property, zoning: value });
           }}
         />
+        <TextInput
+          value={property.price}
+          placeholder="$ Price"
+          type="number"
+          formInput={(value) => {
+            setProperty({ ...property, price: value });
+          }}
+        />
       </div>
 
       <TextArrayInput
@@ -461,13 +470,13 @@ export default function Post() {
 
       <div className={style.submitButtons}>
         <button className="btn btn-info" onClick={() => handleSubmit("post")}>
-          Free Submit
+          Submit Free
         </button>
         <button
           className="btn btn-success"
           onClick={() => handleSubmit("premium")}
         >
-          Premium Submit
+          Submit Premium
         </button>
       </div>
     </>

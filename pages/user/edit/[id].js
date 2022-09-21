@@ -423,7 +423,7 @@ export default function EditProperty() {
 
         <div className={style.submitButtons}>
           <button className="btn btn-info" onClick={() => handleSubmit()}>
-            Submit
+            Update
           </button>
         </div>
       </>

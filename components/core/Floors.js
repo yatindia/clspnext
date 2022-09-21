@@ -41,7 +41,7 @@ export default function Floors({ floors }) {
               </p>
             </div>
             <div style={{ marginBottom: "10px" }} className={style.Amenities}>
-              <h3 className="color mt-3 ml-2">Floor Amenities</h3>
+              <h3 className="color mt-3 ml-2">Amenities</h3>
 
               {Array.isArray(floor.amenities) && floor.amenities.length > 0 ? (
                 floor.amenities.map((amenity, indexKey) => {

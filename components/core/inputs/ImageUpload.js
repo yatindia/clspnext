@@ -68,7 +68,7 @@ export default function ImageUpload(props) {
             }}
             className="btn-main"
           >
-            Upload
+            Upload a Photo
           </button>
           <button
             onClick={() => {
@@ -76,7 +76,7 @@ export default function ImageUpload(props) {
             }}
             className="btn-red"
           >
-            Remove
+            Remove placeholder
           </button>
         </div>
       )}

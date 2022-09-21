@@ -13,20 +13,26 @@ export default function Search() {
     googleMapsApiKey: "AIzaSyD1A1aNBxTVVNxtYKRbFWZm9uyWwJVag5E",
   });
   const [results, setResults] = useState([]);
+
   const [searchQuery, setsearchQuery] = useState("");
   const [state, setState] = useState("");
   const [propertFor, setPropertFor] = useState("");
+  const [propertPurposeValue, setPropertPurposeValue] = useState("");
+  const [sizeSearch, setSizeSearch] = useState({
+    min: null,
+    max: null,
+  });
+  const [priceSearch, setPriceSearch] = useState({
+    min: null,
+    max: null,
+  });
+
   const router = useRouter();
   const [loader, setLoader] = useState(true);
 
   const [paginationLimit, setPaginationLimit] = useState(5);
   const [pagination, setPagination] = useState({
     skip: 0,
-  });
-
-  const [sizeSearch, setSizeSearch] = useState({
-    min: 0,
-    max: 0,
   });
 
   useEffect(() => {
@@ -36,21 +42,33 @@ export default function Search() {
       router.query.search ? setsearchQuery(router.query.search) : null;
       router.query.for ? setPropertFor(router.query.for) : null;
       router.query.state ? setState(router.query.state) : null;
+      router.query.type ? setPropertPurposeValue(router.query.type) : null;
     }
   }, []);
   useEffect(() => {
     handleLoadSearch();
-  }, [sizeSearch, state, propertFor]);
+  }, [
+    searchQuery,
+    sizeSearch,
+    state,
+    propertFor,
+    priceSearch,
+    propertPurposeValue,
+  ]);
 
   const handleLoadSearch = async () => {
-    let sendData = {
-      skip: 0,
-      limit: 20,
-      search: searchQuery == "" ? " " : searchQuery,
-    };
+    let sendData = {};
 
+    searchQuery != "" ? (sendData.search = searchQuery) : null;
     state != "" ? (sendData.state = state) : null;
     propertFor != "" ? (sendData.for = propertFor) : null;
+    propertPurposeValue != "" ? (sendData.type = propertPurposeValue) : null;
+    sizeSearch.min != "" ? (sendData.min = sizeSearch.min) : null;
+    sizeSearch.max != "" ? (sendData.max = sizeSearch.max) : null;
+    priceSearch.min != "" ? (sendData.pmin = priceSearch.min) : null;
+    priceSearch.max != "" ? (sendData.pmax = priceSearch.max) : null;
+
+    console.log(sendData);
 
     axios({
       method: "post",
@@ -66,6 +84,26 @@ export default function Search() {
         setLoader(false);
       });
   };
+
+  const handleSearchClear = async () => {
+    setsearchQuery("");
+    setPropertFor("");
+    setState("");
+  };
+
+  const propertPurpose = [
+    "office",
+    "personal",
+    "medical",
+    "industrial",
+    "retail",
+    "restaurant",
+    "shopping Center",
+    "multifamily",
+    "health Care",
+    "land",
+    "multipurpose",
+  ];
 
   if (!isLoaded) {
     return <ProgressBar />;
@@ -102,25 +140,90 @@ export default function Search() {
               })
           : null}
       </GoogleMap>
+      <div className="d-flex mt-5">
+        <nav className="d-block m-auto" aria-label="Page navigation example">
+          <ul className="pagination ">
+            {pagination.skip - paginationLimit >= 0 ? (
+              <li className="page-item">
+                <p
+                  className="page-link"
+                  onClick={() => {
+                    setPagination({
+                      ...pagination,
+                      skip: pagination.skip - paginationLimit,
+                    });
+                  }}
+                >
+                  Previous
+                </p>
+              </li>
+            ) : null}
+
+            {Array(Math.ceil(results.length / paginationLimit))
+              .fill(1)
+              .map((page, index) => {
+                return (
+                  <li
+                    key={index}
+                    className={`page-item ${
+                      pagination.skip / paginationLimit == index
+                        ? "active"
+                        : null
+                    }`}
+                    onClick={() =>
+                      setPagination({
+                        ...pagination,
+                        skip: paginationLimit * index,
+                      })
+                    }
+                  >
+                    <p className="page-link">{index + 1}</p>
+                  </li>
+                );
+              })}
+
+            {results.length > pagination.skip + paginationLimit ? (
+              <li className="page-item">
+                <p
+                  className="page-link"
+                  onClick={() => {
+                    setPagination({
+                      ...pagination,
+                      skip: pagination.skip + paginationLimit,
+                    });
+                  }}
+                >
+                  Next
+                </p>
+              </li>
+            ) : null}
+
+            <li className="page-item  ml-2">
+              <select
+                onInput={(e) => setPaginationLimit(e.target.value)}
+                className="page-link"
+              >
+                <option value={10}>No.of Results - 10</option>
+                {results.length > 20 * 2 ? (
+                  <option value={20}>No.of Results - 20</option>
+                ) : null}
+                {results.lenght > 30 * 2 ? (
+                  <option value={30}>No.of Results - 30</option>
+                ) : null}
+              </select>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
       <div className={style.searchBar}>
-        <input
-          type="search"
+        <TextInput
           value={searchQuery}
-          placeholder="Search...."
-          onInput={(e) => setsearchQuery(e.target.value)}
-          className={style.searchInput}
-        />
-        <button
-          className={style.searchButton}
-          onClick={() => {
-            handleLoadSearch();
+          placeholder="City/Place"
+          formInput={(value) => {
+            setsearchQuery(value);
           }}
-        >
-          Search
-        </button>
-      </div>
-      <div className={style.searchBar}>
+        />
         <SelectInput
           value={propertFor}
           placeholder="Property Type"
@@ -131,26 +234,64 @@ export default function Search() {
         />
 
         <SelectInput
+          value={state}
           placeholder="State"
           dataArray={States}
           formInput={(value) => {
             setState(value);
           }}
         />
-        <TextInput
-          placeholder="Min Sq.ft"
-          type="number"
+        <SelectInput
+          value={propertPurposeValue}
+          placeholder="Purpose"
+          dataArray={propertPurpose}
           formInput={(value) => {
-            setSizeSearch({ ...sizeSearch, min: value });
+            setPropertPurposeValue(value);
           }}
         />
-        <TextInput
-          placeholder="Max Sq.ft"
-          type="number"
-          formInput={(value) => {
-            setSizeSearch({ ...sizeSearch, max: value });
-          }}
-        />
+        <div className={style.twice}>
+          <p className={style.title}>Property Size Sq.ft</p>
+          <div className={style.twiceInput}>
+            <input
+              type={"number"}
+              onInput={(e) => {
+                setSizeSearch({ ...sizeSearch, min: e.target.value });
+              }}
+              className={style.input}
+              placeholder="Min"
+            />
+            <input
+              type={"number"}
+              onInput={(e) => {
+                setSizeSearch({ ...sizeSearch, max: e.target.value });
+              }}
+              className={style.input}
+              placeholder="Max"
+            />
+          </div>
+        </div>
+
+        <div className={style.twice}>
+          <p className={style.title}>Price Size Sq.ft</p>
+          <div className={style.twiceInput}>
+            <input
+              type={"number"}
+              onInput={(e) => {
+                setPriceSearch({ ...priceSearch, min: e.target.value });
+              }}
+              className={style.input}
+              placeholder="Min"
+            />
+            <input
+              type={"number"}
+              onInput={(e) => {
+                setPriceSearch({ ...priceSearch, max: e.target.value });
+              }}
+              className={style.input}
+              placeholder="Max"
+            />
+          </div>
+        </div>
       </div>
       <div className={style.results}>
         {results

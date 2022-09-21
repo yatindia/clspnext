@@ -49,9 +49,34 @@ a
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover 
   background: #555
+//tooltip
+.tooltip 
+  position: relative
+  display: inline-block
+  border-bottom: 1px dotted black
+
+
+/* Tooltip text */
+.tooltip .tooltiptext 
+  visibility: hidden
+  width: 120px
+  background-color: black
+  color: #fff
+  text-align: center
+  padding: 5px 0
+  border-radius: 6px
+  position: absolute
+  z-index: 1
+
+.tooltip:hover .tooltiptext 
+  visibility: visible
+
 
 .color
   color: $secondary
+
+.bg-color
+  background-color: $secondary !important
 //Forms
 
 .formInput
@@ -123,7 +148,7 @@ a
   background-color: #fff
   height: 50px
   color: $secondary
-  border-bottom: 2px solid $tir
+  border-bottom: 2px solid $secondary
   @include mobile
     margin-bottom: 1%
 
@@ -230,3 +255,4 @@ a
 .navbar-expand-lg
   @media only screen and (max-width:991px) and (min-width:901px)
     display: none !important 
+

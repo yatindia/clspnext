@@ -129,13 +129,13 @@ export default function MyPosts() {
                           {theProperty.address_2}
                         </p>
                         <Link href={`/user/edit/${theProperty.uid}`}>
-                          <a className="btn btn-primary mr-1">
+                          <a className="btn bg-color mr-1">
                             <img width={"20px"} src="/icons/editing.png" />
                           </a>
                         </Link>
                         <button
                           onClick={() => handleDeletePost(theProperty._id)}
-                          className="btn btn-danger mr-1"
+                          className="btn bg-color mr-1"
                         >
                           <img width={"20px"} src="/icons/bin.png" />
                         </button>
@@ -161,9 +161,10 @@ export default function MyPosts() {
           <nav className="d-block m-auto" aria-label="Page navigation example">
             <ul className="pagination ">
               {pagination.skip - paginationLimit >= 0 ? (
-                <li className="page-item">
+                <li className="page-item ">
                   <p
                     className="page-link"
+                    style={{ color: "#14213D" }}
                     onClick={() => {
                       setPagination({
                         ...pagination,
@@ -194,7 +195,20 @@ export default function MyPosts() {
                         })
                       }
                     >
-                      <a className="page-link" href="#">
+                      <a
+                        className="page-link"
+                        style={{
+                          backgroundColor:
+                            pagination.skip / paginationLimit == index
+                              ? "#14213D"
+                              : null,
+                          color:
+                            pagination.skip / paginationLimit == index
+                              ? "#fff"
+                              : "#14213D",
+                        }}
+                        href="#"
+                      >
                         {index + 1}
                       </a>
                     </li>
@@ -204,7 +218,8 @@ export default function MyPosts() {
               {property.length > pagination.skip + paginationLimit ? (
                 <li className="page-item">
                   <p
-                    className="page-link"
+                    className="page-link color"
+                    style={{ color: "#14213D" }}
                     onClick={() => {
                       setPagination({
                         ...pagination,
@@ -222,6 +237,7 @@ export default function MyPosts() {
                   <select
                     onInput={(e) => setPaginationLimit(e.target.value)}
                     className="page-link"
+                    style={{ color: "#14213D" }}
                   >
                     <option value={10}>No.of Results - 2</option>
                     {property.length > 20 * 2 ? (

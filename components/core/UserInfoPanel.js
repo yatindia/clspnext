@@ -40,10 +40,10 @@ export default function UserInfoPanel() {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-              handleYouAre("buyer");
+              handleYouAreA("buyer");
               Swal.fire("Thank you!", "", "success");
             } else if (result.isDenied) {
-              handleYouAre("seller");
+              handleYouAreA("seller");
               Swal.fire("Thank you!", "", "success");
             }
           });
@@ -54,7 +54,7 @@ export default function UserInfoPanel() {
     });
   };
 
-  const handleYouAre = async (status) => {
+  const handleYouAreA = async (status) => {
     //areYouBuyer
 
     axios({

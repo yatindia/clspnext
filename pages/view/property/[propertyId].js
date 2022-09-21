@@ -137,6 +137,7 @@ export default function PropertyView() {
                 Array.isArray(property.liked) &&
                 property.liked.includes(tokenToId(theUser.data.token)) ? (
                   <button
+                    title="Click to un-save this post"
                     className="btn btn-danger ml-3"
                     onClick={() => handleUnLike(property._id)}
                   >
@@ -144,6 +145,7 @@ export default function PropertyView() {
                   </button>
                 ) : (
                   <button
+                    title="Click to save this post"
                     className="btn btn-primary ml-3"
                     onClick={() => handleLike(property._id)}
                   >
@@ -158,8 +160,8 @@ export default function PropertyView() {
                     "facebook",
                     "twitter",
                     "whatsapp",
-                    "reddit",
                     "linkedin",
+                    "reddit",
                     "mail",
                     "copy",
                   ]}
@@ -170,7 +172,9 @@ export default function PropertyView() {
                   }}
                   onClick={() => console.log("shared successfully!")}
                 >
-                  <button className="btn btn-dark">Share 🔗</button>
+                  <button title="Click To Share" className="btn btn-dark">
+                    Share 🔗
+                  </button>
                 </RWebShare>
               </div>
             </h1>

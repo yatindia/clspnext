@@ -16,6 +16,7 @@ const PropertySchema = {
   renovated_year: 0,
   building_size: 0,
   lot_size: 0,
+  price: 0,
   construction_type: "",
   sewer: "city",
   electricity: "commercial",

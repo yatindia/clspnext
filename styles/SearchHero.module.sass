@@ -1,255 +1,98 @@
 @import "Config"
 
 /* ------- COLORS -------
+.container
+  background-image: url("/buildings.jpg")
+  background-size: cover
 
-
-$color: red
-$background-color:white
-$text-color:black
-$text-light-color:#444
-$border-color:silver
-$link-color:#2619AF
-$link-visited-color:#670199
-$url-color:#078307
-$header-color:#f9f9fb
-$ad-color:#58a33f
-
-
-.index__header, .index__bottom
-  opacity: 0.9
-  background-color: $background-color
-
-.index
-  height: 80vh
-  flex-wrap: nowrap
-  flex-direction: column
-  display: flex
-  align-items: center
-  justify-content: center
-
-.index__header
-  display: flex
-  align-items: center
-  justify-content: center
-  flex: 2
+.gradientContainer
+  min-height: 90vh
   width: 100%
-  max-width: 600px
-  padding: 0
-  flex-wrap: nowrap
-  flex-direction: column
-
-@media (min-width: 651px)
-  .index__header
-    padding: 0 1.5em
-
-.index__logo
-  height: 48px
-  width: 300px
-  background-size: contain
-  background-position: 50% 50%
-  background-repeat: no-repeat
-  background-image: url(/logo.svg)
-
-@media (min-width: 600px)
-  .index__logo
-    height: 62px
-    width: 385px
-
-.index
-  .index__nav
-    margin: 1.5em auto 1.25em
-
-  .index__search
-    width: 100%
-    max-width: 600px
-
-@media (min-width: 600px)
-  .index .index__nav
-    margin: 1em auto 1.25em
-
-.index__nav
-  margin: 0
-  padding: 0
+  background-image: linear-gradient($primary, #00000000)
   display: flex
-  line-height: 1
-  font-size: 16px
-  list-style: none
-  justify-content: space-around
-  color: $text-light-color
-
-  li
-    margin-left: 2em
-
-    &:first-child
-      margin-left: 0
-
-  a
-    color: inherit
-    display: block
-    padding: 12px 0 2px
-    text-decoration: none
-
-  .index__active
-    border-bottom: 3px solid $color
-    color: $text-color
-    font-weight: 700
-
-@media (min-width: 500px)
-  .index__nav
-    justify-content: start
-
-@media (min-width: 600px)
-  .index__nav li
-    margin-left: 3em
-
-.index__form
-  background-color: $background-color
-  border-radius: 2px
-  border: 1px solid $border-color
-  display: flex
-
-  > div
-    flex: 1
-
-@media (min-width: 800px)
-  .index__form
-    max-width: 680px
-    width: 100%
-
-.index__query
-  background: transparent
-  opacity: 1
-  border: 0
-  color: $text-color
-  display: block
-  font-size: 16px
-  height: 38px
-  line-height: 38px
-  margin: 0
-  outline: none
-  padding: 5px 10px 5px 15px
-  width: 100%
-  -webkit-appearance: none
-
-.index__button
-  background-color: transparent
-  border: 0
-  cursor: pointer
-  flex: 0 0 40px
-  font-weight: 500
-  height: 38px
-  line-height: 38px
-  padding: 0
-  -webkit-user-select: none
-  -moz-user-select: none
-  -ms-user-select: none
-  user-select: none
-
-  .index__ico
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg height='32' width='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z' fill='%234f5f8f'/%3E%3C/svg%3E")
-    background-size: 20px 20px
-    background-position: 50% 50%
-    background-repeat: no-repeat
-    height: 38px
-    width: 40px
-
-    &:focus, :active
-    outline: 0 none
-
-.index__bottom
-  color: $text-light-color
-  display: flex
-  flex-wrap: wrap
-  font-size: 13px
   justify-content: center
-  padding: 2em 0
+  align-items: center
+
+.searchContainer
+  width: 70%
+  @include mobile
+    width: 90%
+ 
+
+.searchTypes
+
+.searchType
+  all: unset
+  background-color: $secondary
+  color: #fff
+  padding: 10px 0 10px 0
+  width: 15%
   text-align: center
+  transition: all 0.3s
+  font-weight: bold
+  @include mobile
+    width: 30%
+
+.active
+  background-color: $primary
+  color:  $secondary
+  width: 20%
+  @include mobile
+    width: 70%
+
+.searchBar
   width: 100%
 
-@media (min-width: 400px)
-  .index__bottom
-    font-size: 13px
-
-@media (min-width: 600px)
-  .index__bottom
-    flex-wrap: nowrap
-
-.index__copyright
-  flex: 100%
-  margin: 1em 0 0
-
-@media (min-width: 600px)
-  .index__copyright
-    border-right: 1px solid $border-color
-    display: inline-flex
-    flex: none
-    margin: 0 2em 0 0
-    padding-right: 2em
-
-.index__links
-  display: flex
-  justify-content: space-around
-  list-style: none
-  margin: 0
-  padding: 0
-
-  li
-    margin-left: .5em
-    padding-left: 1em
-    position: relative
-
-    &:before
-      content: "•"
-      position: absolute
-      left: 0
-
-    &:first-child
-      margin-left: 0
-      padding-left: 0
-
-      &:before
-        content: ""
-
-  a
-    color: inherit
-    text-decoration: none
-
-@media (min-width: 600px)
-  .index__links
-    display: inline-flex
-    flex: none
-    order: 2
-
-@media (min-width: 400px)
-  .index__links li
-    margin-left: 1em
-    padding-left: 1.2em
-
-/* ------- EOF -------
-
-
-
-.select
-  padding: 10px
-  border: none
-  background-color: #fff
-  &:focus
-    outline: none
-
-.selectContainer
-  border: 5px solid red
   display: grid
-  grid-template-columns: 1fr 9fr
-  justify-content: center
-  align-items: center
-  width: 60%
-  padding: 1%
-  margin-top: 5%
-  border-radius: 10px
-  outline: none
+  grid-template-columns: 1fr 1fr 1fr
+  @include mobile
+    grid-template-columns: 1fr
 
 
-.selectImage
+.state
+  width: 100%
+  padding: 5%
+  background-color: $secondary
+
+.stateSelect
+  border: none
   width: 100%
   height: unset
-  aspect-ratio: 1
+  aspect-ratio: 8
+  background-color: #fff
+
+.inputCity
+  background-color: $secondary
+  padding: 5%
+.city
+  width: 100%
+  height: unset
+  aspect-ratio: 8
+  border: none
+  
+
+.inputZipcode
+  background-color: $secondary
+  padding: 5%
+.zipcode
+  width: 100%
+  height: unset
+  aspect-ratio: 8
+  border: none
+
+.searchButton
+  width: 100%
+  background-color: $secondary
+  display: flex
+  justify-content: center
+  align-items: center
+.button
+  all: unset
+  background-color: $primary
+  color: $secondary
+  text-align: center
+  width: 100%
+  padding: 1.5%
+  margin: 1% 0 0% 0
+  font-weight: bold
+  

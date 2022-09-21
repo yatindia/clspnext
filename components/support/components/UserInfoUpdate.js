@@ -164,7 +164,8 @@ export default function UserInfoUpdate({ userInfo, userData }) {
 
         <button
           onClick={() => handleUpdate()}
-          className={`btn btn-danger ${style.button}`}
+          className={`btn bg-color ${style.button}`}
+          style={{ color: "#fff" }}
         >
           Update Profile
         </button>
@@ -204,7 +205,8 @@ export default function UserInfoUpdate({ userInfo, userData }) {
 
         <button
           onClick={() => handlePasswordUpdate()}
-          className={`btn btn-danger ${style.button}`}
+          className={`btn bg-color ${style.button}`}
+          style={{ color: "#fff" }}
         >
           Update Password
         </button>
@@ -230,7 +232,8 @@ export default function UserInfoUpdate({ userInfo, userData }) {
           onClick={() => {
             handleEmailUpdate();
           }}
-          className={`btn btn-danger ${style.button}`}
+          className={`btn bg-color ${style.button}`}
+          style={{ color: "#fff" }}
         >
           Update Email
         </button>
