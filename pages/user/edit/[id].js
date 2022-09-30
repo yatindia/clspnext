@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropertySchema, {
   floorSchema,
+  nearbySchema,
 } from "../../../components/lib/PropertySchema";
 import { useJsApiLoader, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Config from "../../../components/lib/Config";
@@ -9,8 +10,10 @@ import {
   TextInput,
   SelectInput,
   TextArrayInput,
+  Text2DArrayInput,
 } from "../../../components/core/inputs/FormInputs";
 import FloorInput from "../../../components/core/inputs/FloorInput";
+import NearbyInput from "../../../components/core/inputs/NearbyInput";
 import ImageUpload from "../../../components/core/inputs/ImageUpload";
 import { user } from "../../../components/core/Atoms";
 import { useRecoilState } from "recoil";
@@ -420,6 +423,14 @@ export default function EditProperty() {
         >
           Add Floors
         </button>
+
+        <Text2DArrayInput
+          placeholder="Hightlights"
+          value={property.nearby}
+          formInput={(value) => {
+            setProperty({ ...property, nearby: value });
+          }}
+        />
 
         <div className={style.submitButtons}>
           <button className="btn btn-info" onClick={() => handleSubmit()}>

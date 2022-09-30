@@ -25,8 +25,13 @@ export default function PropertyDetails({ property, agent }) {
               data[0] == "renovated" ||
               data[0] == "liked" ||
               data[0] == "status" ||
+              data[0] == "nearby" ||
               data[0] == "_id"
             ) {
+              return null;
+            }
+
+            if (data[1] == "") {
               return null;
             }
 
@@ -51,6 +56,7 @@ export default function PropertyDetails({ property, agent }) {
                   {data[0].replace("_", " ").toUpperCase()}
                 </strong>
                 <br />
+                {data[0] == "price" ? "$" : null}
                 {data[1]}
               </p>
             );

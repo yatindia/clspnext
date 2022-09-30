@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { SelectInput, TextArrayInput, TextInput } from "../inputs/FormInputs";
+import {
+  SelectInput,
+  TextArrayInput,
+  TextInput,
+  Text2DArrayInput,
+} from "../inputs/FormInputs";
 import style from "../../../styles/FloorInput.module.sass";
 
 export default function FloorInput(props) {
@@ -81,17 +86,16 @@ export default function FloorInput(props) {
           setFloor({ ...floor, period_of_tenure: value });
         }}
       />
-
-      <SelectInput
+      <TextInput
         value={floor.avaliable}
-        placeholder="Avaliable"
-        dataArray={[true, false]}
+        placeholder="Avaliablility"
         formInput={(value) => {
           setFloor({
             ...floor,
             avaliable: value,
           });
         }}
+        dataList={["Yes", "In 6 Months", "Immediate"]}
       />
 
       <TextArrayInput

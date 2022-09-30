@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropertySchema, {
   floorSchema,
+  nearbySchema,
 } from "../../components/lib/PropertySchema";
 import { useJsApiLoader, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Config from "../../components/lib/Config";
@@ -9,8 +10,10 @@ import {
   TextInput,
   SelectInput,
   TextArrayInput,
+  Text2DArrayInput,
 } from "../../components/core/inputs/FormInputs";
 import FloorInput from "../../components/core/inputs/FloorInput";
+import NearbyInput from "../../components/core/inputs/NearbyInput";
 import ImageUpload from "../../components/core/inputs/ImageUpload";
 import { user } from "../../components/core/Atoms";
 import { useRecoilState } from "recoil";
@@ -88,7 +91,7 @@ export default function Post() {
             alert(res.data.message);
           } else {
             alert(res.data.message);
-            window.location.href = "/user/myposts";
+            window.location.href = "/user";
           }
         }
       });
@@ -282,20 +285,12 @@ export default function Post() {
         />
         <TextInput
           value={property.address_2}
-          placeholder="Address 2"
+          placeholder="Address 2 (optional)"
           formInput={(value) => {
             setProperty({ ...property, address_2: value });
           }}
         />
 
-        <SelectInput
-          value={property.country}
-          placeholder="Country"
-          dataArray={["us"]}
-          formInput={(value) => {
-            setProperty({ ...property, country: value });
-          }}
-        />
         <SelectInput
           value={property.state}
           placeholder="State"
@@ -317,6 +312,14 @@ export default function Post() {
           type="number"
           formInput={(value) => {
             setProperty({ ...property, zip_code: value });
+          }}
+        />
+        <SelectInput
+          value={property.country}
+          placeholder="Country"
+          dataArray={["us"]}
+          formInput={(value) => {
+            setProperty({ ...property, country: value });
           }}
         />
 
@@ -401,14 +404,14 @@ export default function Post() {
         />
         <TextInput
           value={property.zoning}
-          placeholder="Zoning"
+          placeholder="Zoning (optional)"
           formInput={(value) => {
             setProperty({ ...property, zoning: value });
           }}
         />
         <TextInput
           value={property.price}
-          placeholder="$ Price"
+          placeholder="Price $ (optional)"
           type="number"
           formInput={(value) => {
             setProperty({ ...property, price: value });
@@ -457,7 +460,7 @@ export default function Post() {
       </div>
 
       <button
-        className={style.addFloorButton}
+        className={`${style.addFloorButton} mt-5`}
         onClick={() => {
           setProperty({
             ...property,
@@ -467,6 +470,14 @@ export default function Post() {
       >
         Add Floors
       </button>
+
+      <Text2DArrayInput
+        placeholder="Hightlights"
+        value={property.nearby}
+        formInput={(value) => {
+          setProperty({ ...property, nearby: value });
+        }}
+      />
 
       <div className={style.submitButtons}>
         <button className="btn btn-info" onClick={() => handleSubmit("post")}>

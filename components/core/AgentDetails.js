@@ -31,7 +31,10 @@ export default function AgentDetails({ agent }) {
               : "url(/user.png)",
         }}
       ></div>
-      <h3 className="text-center text-break p-2">{agent.name}</h3>
+      <h3 className="text-center text-break p-2 pb-0">{agent.name}</h3>
+      <h4 className="text-center text-break text-danger">
+        {agent.companyName}
+      </h4>
       <div className={style.agent}>
         <Link href={`tel:${agent.phoneNumber}`}>
           <a className={style.agentInfo}>

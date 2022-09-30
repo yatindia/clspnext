@@ -29,6 +29,7 @@ const PropertySchema = {
     lng: -95.665,
   },
   floors: [],
+  nearby: [],
 };
 
 export const floorSchema = {
@@ -41,6 +42,10 @@ export const floorSchema = {
   amenities: [],
   period_of_tenure: 0,
   avaliable: true,
+};
+export const nearbySchema = {
+  amenity: "",
+  distance: "",
 };
 
 export default PropertySchema;

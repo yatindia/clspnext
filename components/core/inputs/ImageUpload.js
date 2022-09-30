@@ -66,17 +66,17 @@ export default function ImageUpload(props) {
             onClick={() => {
               inputRef.current.click();
             }}
-            className="btn-main"
+            className="btn-main text-center"
           >
-            Upload a Photo
+            Upload Property Photo
           </button>
           <button
             onClick={() => {
               props.onDelete();
             }}
-            className="btn-red"
+            className="btn-red text-center"
           >
-            Remove placeholder
+            Remove
           </button>
         </div>
       )}

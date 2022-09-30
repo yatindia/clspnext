@@ -172,10 +172,17 @@ export default function PropertyView() {
                   }}
                   onClick={() => console.log("shared successfully!")}
                 >
-                  <button title="Click To Share" className="btn btn-dark">
+                  <button title="Click To Share" className="btn btn-dark ">
                     Share 🔗
                   </button>
                 </RWebShare>
+                <button
+                  title="Click to Print Property Details "
+                  className="btn btn-danger ml-2"
+                  onClick={() => window.print()}
+                >
+                  Print
+                </button>
               </div>
             </h1>
 
@@ -197,12 +204,104 @@ export default function PropertyView() {
                 : null}
             </ul>
             <PropertyDetails property={property} agent={agent} />
+
             {Array.isArray(property.floors) && property.floors.length > 0 ? (
-              <Floors floors={property.floors} />
+              <>
+                <h3 style={{ marginLeft: "5%" }} className="pb-2 ">
+                  Floor Details
+                </h3>
+                <div
+                  style={{ width: "90%", margin: "auto", marginBottom: "3%" }}
+                  id="accordion"
+                >
+                  <div>
+                    <div className="card m-0">
+                      <div className="card-header" id={`headingHeading`}>
+                        <h5 className="mb-0">
+                          <button
+                            className="btn w-100"
+                            data-bs-bs-toggle="collapse"
+                            data-bs-bs-target={`#collapseHeading`}
+                            aria-expanded={"true"}
+                            aria-controls={`collapseHeading`}
+                          >
+                            <span
+                              className={`text-danger text-center ${style.mobileIndexTable}`}
+                            >
+                              <strong className="text-center w-100 d-block">
+                                Individual Floor Details
+                              </strong>
+                            </span>
+                            <div className={style.table}>
+                              <span className="text-danger">
+                                <strong>Floor#</strong>
+                              </span>
+                              <span>
+                                <strong>Avaliability</strong>
+                              </span>
+                              <span>
+                                <strong>Condition</strong>
+                              </span>
+                              <span>
+                                <strong>Floor Size</strong>
+                              </span>
+                              <span>
+                                <strong>Period Of Tenure</strong>
+                              </span>
+                              <span>
+                                <strong>Rate</strong>
+                              </span>
+                              <span>
+                                <strong>Purpose</strong>
+                              </span>
+                              <span>
+                                <strong>Term</strong>
+                              </span>
+                            </div>
+                          </button>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                  <Floors floors={property.floors} />
+                </div>
+              </>
             ) : null}
+
+            <div style={{ width: "90%", margin: "auto", marginBottom: "3%" }}>
+              <h3 className="pb-2">Near By Amenities </h3>
+              <div style={{ display: "flex", gap: "2%", flexWrap: "wrap" }}>
+                {property.nearby.map((data, index) => {
+                  if (data[1] == "") {
+                    return null;
+                  }
+
+                  return (
+                    <p
+                      key={index}
+                      className={style.info}
+                      style={{
+                        border: "none",
+                        boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
+                        padding: "1%",
+                        minWidth: "15%",
+                        borderTop: "1px solid #14213D",
+                      }}
+                    >
+                      <strong className={style.label}>
+                        {data.amenity.toUpperCase()}
+                      </strong>
+                      <br />
+                      {data.distance} mi
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+
             <GoogleMap
               center={property.gps}
-              zoom={5}
+              zoom={16}
               mapContainerStyle={{ width: "100vw", height: "40vh" }}
             >
               <MarkerF position={property.gps} />

@@ -77,6 +77,9 @@
     align-items: center
     &:hover
         color: $primary
+    @media print
+        color: $secondary
+        background-color: $secondary
 
 .fullAgent
     display: flex
@@ -95,6 +98,8 @@
     background-size: cover
     background-position: center
     border-radius: 100%
+    @media print
+        display: none
 
 .profile
     width: 30%
@@ -123,10 +128,15 @@
 .floors
     width: 90%
     margin: auto
+    display: flex
+    flex-wrap: wrap
+    justify-content: left
+    align-items: left
 .floor
+    min-width: 350px
     margin: 5% auto
     display: grid
-    grid-template-columns: 3fr 7fr
+    grid-template-columns: 1fr
     border: 5px solid $secondary
     padding: 2%
     background-color: $primary
@@ -134,20 +144,43 @@
     @include mobile
         grid-template-columns: 1fr
 .floorDetails
+    width: 90%
     background-color: #fff
-    margin-right: 20px
     padding: 5%
     border-radius: 5px
     box-shadow:1px 1px 5px rgba(0, 0, 0, 0.2)
+    display: none
+    @include mobile
+        display: block
         
 .floorAmenity
     background-color: #fff
     margin-right: 20px
-    padding: 5%
+    padding: 1%
     border-radius: 5px
     box-shadow:1px 1px 5px rgba(0, 0, 0, 0.2)
+        
 
 .floorLabel
     margin-right: 10px
     &::after
         content: ": "
+
+.table
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(8,1fr) 0.5fr
+    justify-content: center
+    align-items: center
+    @include mobile
+         strong 
+            display: none
+            
+        
+
+.mobileIndexTable
+    display: none
+    @include mobile
+        display: block
+        
+

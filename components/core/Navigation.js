@@ -153,9 +153,9 @@ export default function Navigation() {
                 </a>
               </Link>
 
-              <Link href="/user/myposts">
+              <Link href="/user/settings">
                 <a onClick={() => setMobileNavOpen(false)} className={style.a}>
-                  My Posts
+                  Settings
                 </a>
               </Link>
 

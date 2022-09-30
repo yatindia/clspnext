@@ -59,7 +59,7 @@ export default function SearchHero() {
                 }}
                 className={style.stateSelect}
               >
-                <option value="">Select A state</option>
+                <option value="">Select a state</option>
                 {States.map((state, index) => {
                   return (
                     <option key={index} value={state}>
@@ -93,7 +93,7 @@ export default function SearchHero() {
               <input
                 type="text"
                 className={style.city}
-                placeholder="Enter city/placename"
+                placeholder="Enter city/address"
                 onInput={({ target }) => {
                   setSearch({ ...search, search: target.value });
                 }}

@@ -20,7 +20,8 @@
     "react-simple-image-slider": "^2.4.1",
     "react-web-share": "^2.0.0",
     "recoil": "^0.7.5",
-    "sweetalert2": "^11.4.33"
+    "sweetalert2": "^11.4.33",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "eslint": "8.23.0",
