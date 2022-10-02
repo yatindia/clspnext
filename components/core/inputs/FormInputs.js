@@ -49,7 +49,6 @@ export function TextInput({
         {placeholder}
       </label>
       <input
-        autocomplete="off"
         list={id}
         disabled={disabled}
         type={type}
@@ -172,11 +171,14 @@ export function Text2DArrayInput(props) {
           ? arrayData.map((data, index) => {
               return (
                 <div
-                  title="Click To remove"
+                  key={index}
+                  title="Click To Remove"
                   className="form2DArrayInputContainer"
                 >
                   <p className="f2damenity">{data.amenity}</p>
-                  <p className="f2ddistance">{data.distance}</p>
+                  <p className="f2ddistance">
+                    {data.distance} Mile{data.distance > 1 ? "s" : null}
+                  </p>
 
                   <div
                     onClick={() => handleRemove(index)}
@@ -192,20 +194,39 @@ export function Text2DArrayInput(props) {
         <div className="form2DArrayInputControlContainer mt-5">
           <div className="form2DArrayInputControlContainerInputContainer">
             <label>
-              <strong>The Amenity</strong>
+              <strong>Amenity</strong>
             </label>
             <input
+              list="theDatum"
               className="form2DArrayInputControlContainerInput"
               value={value.amenity}
               onInput={(e) => {
                 setValue({ ...value, amenity: e.target.value });
               }}
             />
+            <datalist id="theDatum">
+              {[
+                "school",
+                "hospital",
+                "park",
+                "grocery store",
+                "mall",
+                "milk booth",
+                "railway station",
+                "railway stop",
+                "bus terminal",
+                "kinder garden",
+                "amusement park",
+                "resturant",
+              ].map((data, index) => {
+                return <option value={data} key={index} />;
+              })}
+            </datalist>
           </div>
 
           <div className="form2DArrayInputControlContainerInputContainer">
             <label>
-              <strong>Distance</strong>
+              <strong>Distance (Miles)</strong>
             </label>
             <input
               className="form2DArrayInputControlContainerInput"

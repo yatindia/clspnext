@@ -460,7 +460,7 @@ export default function Post() {
       </div>
 
       <button
-        className={`${style.addFloorButton} mt-5`}
+        className={`${style.addFloorButton} mt-5 mb-5`}
         onClick={() => {
           setProperty({
             ...property,

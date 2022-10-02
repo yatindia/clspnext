@@ -93,7 +93,7 @@ export default function SearchHero() {
               <input
                 type="text"
                 className={style.city}
-                placeholder="Enter city/address"
+                placeholder="Enter City or Address"
                 onInput={({ target }) => {
                   setSearch({ ...search, search: target.value });
                 }}
