@@ -1,4 +1,4 @@
-const inProduction = false;
+const inProduction = true;
 const HTTP = "http";
 const productionBaseURL = inProduction
   ? "commerciallistingspro.com"
