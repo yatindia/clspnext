@@ -179,7 +179,12 @@ export default function PropertyView() {
                 <button
                   title="Click to Print Property Details "
                   className="btn btn-danger ml-2"
-                  onClick={() => window.print()}
+                  onClick={() =>
+                    window.open(
+                      `${Config.url.client}/view/print/${property.uid}`,
+                      "_blank"
+                    )
+                  }
                 >
                   Print
                 </button>
