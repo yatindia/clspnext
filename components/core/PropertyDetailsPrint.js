@@ -63,7 +63,7 @@ export default function PropertyDetails({ property, agent }) {
           })}
         </div>
       </div>
-      <AgentDetails agent={agent} />
+      <AgentDetails propertyId={property.uid} agent={agent} />
     </div>
   );
 }

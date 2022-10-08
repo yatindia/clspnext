@@ -167,7 +167,7 @@ export default function PropertyView() {
                   ]}
                   data={{
                     text: `${property.title} - Commercial Listings Pro`,
-                    url: `${Config.url.client}/view/${property.uid}`,
+                    url: `${Config.url.client}/view/property/${property.uid}`,
                     title: `${property.title} - Commercial Listings Pro`,
                   }}
                   onClick={() => console.log("shared successfully!")}
