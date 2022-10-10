@@ -26,6 +26,9 @@ export default function PropertyDetails({ property, agent }) {
               data[0] == "liked" ||
               data[0] == "status" ||
               data[0] == "nearby" ||
+              data[0] == "address_1" ||
+              data[0] == "address_2" ||
+              data[0] == "city" ||
               data[0] == "_id"
             ) {
               return null;

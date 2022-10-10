@@ -14,7 +14,7 @@ export default function Search() {
   });
   const [results, setResults] = useState([]);
 
-  const [searchQuery, setsearchQuery] = useState("");
+  const [searchQuery, setsearchQuery] = useState(null);
   const [state, setState] = useState("");
   const [propertFor, setPropertFor] = useState("");
   const [propertPurposeValue, setPropertPurposeValue] = useState("");
@@ -34,21 +34,19 @@ export default function Search() {
   const [pagination, setPagination] = useState({
     skip: 0,
   });
-
   useEffect(() => {
     if (router.query) {
-      router.query.search ? setsearchQuery(() => router.query.search) : null;
+      router.query.search
+        ? setsearchQuery(() => router.query.search)
+        : setsearchQuery(() => "");
       router.query.for ? setPropertFor(() => router.query.for) : null;
       router.query.state ? setState(() => router.query.state) : null;
       router.query.type
         ? setPropertPurposeValue(() => router.query.type)
         : null;
     }
-  }, []);
-  useEffect(() => {
-    handleLoadSearch();
 
-    console.log(searchQuery, state, propertFor, propertPurposeValue);
+    handleLoadSearch();
   }, [
     searchQuery,
     state,
@@ -59,9 +57,11 @@ export default function Search() {
   ]);
 
   const handleLoadSearch = async () => {
-    let sendData = {};
+    if (searchQuery == null) return false;
 
-    searchQuery != "" ? (sendData.search = searchQuery) : null;
+    let sendData = {};
+    // searchQuery != "" ? (sendData.search = searchQuery) : null;
+    sendData.search = searchQuery;
     state != "" ? (sendData.state = state) : null;
     propertFor != "" ? (sendData.for = propertFor) : null;
     propertPurposeValue != "" ? (sendData.type = propertPurposeValue) : null;
@@ -69,21 +69,28 @@ export default function Search() {
     sizeSearch.max != "" ? (sendData.max = sizeSearch.max) : null;
     priceSearch.min != "" ? (sendData.pmin = priceSearch.min) : null;
     priceSearch.max != "" ? (sendData.pmax = priceSearch.max) : null;
+    console.log(sendData);
+    // axios({
+    //   method: "post",
+    //   url: `${Config.url.api}/property/search`,
+    //   data: {
+    //     ...sendData,
+    //   },
+    // })
+    //   .then((res) => {
 
-    axios({
+    let getData = await fetch(`${Config.url.api}/property/search`, {
       method: "post",
-      url: `${Config.url.api}/property/search`,
-      data: {
-        ...sendData,
+      body: JSON.stringify(sendData),
+      headers: {
+        "Content-Type": " application/json",
       },
-    })
-      .then((res) => {
-        setResults((old) => res.data.data[0]);
-        console.log(res.data.data);
-      })
-      .finally(() => {
-        setLoader(false);
-      });
+    });
+
+    let parseData = await getData.json();
+    setResults(() => parseData.data[0]);
+
+    setLoader(false);
   };
 
   const propertPurpose = [

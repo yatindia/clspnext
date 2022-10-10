@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function SearchHero() {
   const [search, setSearch] = useState({
     search: "",
-    for: "sale",
-    state: "",
+    for: "lease",
+    state: "Texas",
     type: "office",
   });
 
@@ -58,6 +58,7 @@ export default function SearchHero() {
                   setSearch({ ...search, state: target.value });
                 }}
                 className={style.stateSelect}
+                value={search.state}
               >
                 <option value="">Select a state</option>
                 {States.map((state, index) => {
