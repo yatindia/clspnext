@@ -34,8 +34,9 @@ export default function Search() {
   const [pagination, setPagination] = useState({
     skip: 0,
   });
+  const [refresh, setRefresh] = useState(0);
   useEffect(() => {
-    if (router.query) {
+    if (refresh == 0 && router.query) {
       router.query.search
         ? setsearchQuery(() => router.query.search)
         : setsearchQuery(() => "");
@@ -45,7 +46,7 @@ export default function Search() {
         ? setPropertPurposeValue(() => router.query.type)
         : null;
     }
-
+    setRefresh(refresh + 1);
     handleLoadSearch();
   }, [
     searchQuery,
@@ -220,36 +221,36 @@ export default function Search() {
 
       <div className={style.searchBar}>
         <TextInput
-          value={searchQuery}
           placeholder="City/Address"
           formInput={(value) => {
             setsearchQuery(value);
           }}
+          value={searchQuery}
         />
         <SelectInput
-          value={propertFor}
           placeholder="Property Type"
           dataArray={["sale", "lease"]}
           formInput={(value) => {
             setPropertFor(value);
           }}
+          value={propertFor}
         />
 
         <SelectInput
-          value={state}
           placeholder="State"
           dataArray={States}
           formInput={(value) => {
             setState(value);
           }}
+          value={state}
         />
         <SelectInput
-          value={propertPurposeValue}
           placeholder="Purpose"
           dataArray={propertPurpose}
           formInput={(value) => {
             setPropertPurposeValue(value);
           }}
+          value={propertPurposeValue}
         />
         <div className={style.twice}>
           <p className={style.title}>Size Sq.ft</p>

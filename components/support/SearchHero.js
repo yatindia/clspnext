@@ -6,8 +6,8 @@ export default function SearchHero() {
   const [search, setSearch] = useState({
     search: "",
     for: "lease",
-    state: "Texas",
-    type: "office",
+    state: "",
+    type: "",
   });
 
   const propertPurpose = [
